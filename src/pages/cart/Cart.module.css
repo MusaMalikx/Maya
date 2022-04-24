@@ -1,0 +1,46 @@
+.heading1 {
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    margin-bottom: 2rem;
+}
+
+.cartheader {
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    font-weight: 700;
+    padding: 1.2rem 2rem;
+    background: #f8f9fa;
+  }
+
+  .cartremove {
+    color: #495057;
+    text-decoration: none;
+  }
+
+  .blockheader {
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    font-weight: 700;
+    padding: 1.2rem 2rem;
+    background: #f8f9fa;
+    padding: 1.2rem 1.5rem;
+  }
+
+  .blockbody {
+    padding: 1.2rem 1.5rem;
+  }
+  
+  .sepration {
+    border: none;
+    border-radius: 0px;
+    border-bottom: 2px solid lightgray;
+  }
+
+  .btnproced {
+    text-transform: uppercase;
+    letter-spacing: .3em;
+    line-height: 1.5;
+    padding: .7rem .75rem;
+    font-size: .6875rem;
+    border-radius: 0;
+  }

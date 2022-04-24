@@ -1,0 +1,12 @@
+
+.pwHeading{
+    background-color: #f8f9fa;
+    width: 100%;   
+    display:block;
+}
+.profileLI{
+    background-color:#f8f9fa;
+}
+.profileLI:hover{
+    background-color:white;
+}
