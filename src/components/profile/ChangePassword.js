@@ -11,7 +11,7 @@ function ChangePassword() {
             <label htmlFor="oldpassword" className="form-label">OLD PASSWORD</label>
             <input type="password" className="form-control" id="pw1" />
           </div>
-          <div className="col-6"></div>
+          <div className="col-6"/>
           <div className="col-12 col-md-6 mb-3">
             <label htmlFor="newpassword" className="form-label">NEW PASSWORD</label>
             <input type="password" className="form-control" id="pw2" />
