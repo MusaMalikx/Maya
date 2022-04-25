@@ -1,5 +1,5 @@
-import SignUp from "../../components/signup/Signup";
-import Login from "../../components/login/Login";
+import SignUp from "../../components/register/Register";
+import Login from "../../components/checkin/CheckIn";
 import Layout from "../../components/layout/Article";
 
 const LoginSignUp = () => {
