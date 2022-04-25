@@ -1,7 +1,7 @@
 const SignUp = () => {
   return (
-    <div>
-      <div className="container">
+    <div className="">
+      <div className="lg:w-[450px] xl:w-[600px]">
         <div className="p-3 mb-3 bg-[#f8f9fa] text-dark tracking-widest">
           <strong>NEW ACCOUNT</strong>
         </div>

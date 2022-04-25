@@ -3,7 +3,6 @@ import styles from "./Cart.module.css"
 import OrderDetail from "../../components/cart/OrderDetail"
 import CartProduct from "../../components/cart/CartProduct"
 import CartProductList from "../../components/cart/CartProductList"
-import CartHeading from "../../components/cart/CartHeading"
 
 const Cart = () => {
 
@@ -11,7 +10,15 @@ const Cart = () => {
         <Layout title="Shopping Cart">
 
             <div>
-                <CartHeading />
+                <div className="py-20">
+
+                    <div className="pb-5 text-center tracking-widest">
+                        <h1 className="uppercase tracking-[0.8rem] text-center text-4xl lg:text-6xl whitespace-nowrap">Shopping Cart</h1>
+                    </div>
+                    <div className="text-center text-muted">
+                        Id commodo velit ullamco dolore non eiusmod deserunt.
+                    </div>
+                </div>
 
                 <div className="container-xxl text-sm">
                     <div className="row mb-5">

@@ -12,8 +12,8 @@ function UserProfile(props) {
   // const router = useRouter();
 
   return (
-    <div className="flex justify-center pt-10 lg:pt-0">
-      <div className="card bg-[#f8f9fa] w-[300px] mt-7">
+    <div className="flex pt-10 lg:pt-0">
+      <div className="card bg-[#f8f9fa] mt-7 lg:w-[350px] flex-grow">
         <div className="flex justify-center items-center p-10">
           <img
             src={img}
@@ -23,8 +23,10 @@ function UserProfile(props) {
             alt="userimage"
           />
         </div>
-        <div className="p-2 bg-blue-500 text-white justify-center items-center btn btn-primary">
-          <p>Change Picture</p>
+        <div className="flex items-center flex-col">
+          <label htmlFor="avatar" className="text-sm tracking-widest btn">Update Profile Pic</label>
+          <input id="avatar" className="form-control p-2 rounded-none" name="avatar"
+            accept="image/png, image/jpeg" type="file" />
         </div>
         {/* className="card-img-top rounded-circle" */}
         <div className="card-body p-10">
@@ -33,25 +35,27 @@ function UserProfile(props) {
             {props.address}
           </div>
           <ul className="list-group list-group-flush">
-            <li>
-              <Link to={`/orders/${props.name}`}
-                className={` hover:bg-[#f8f9fa] bg-white list-group-item hover:underline hover:underline-offset-1 flex items-center cursor-pointer `}
-              >
+            <li
+            className={` hover:bg-white bg-[#f8f9fa] list-group-item hover:underline hover:underline-offset-1 flex items-center cursor-pointer `}
+            >
+              <Link to={`/orders/${props.name}`} className="flex-grow">
                 <BsLock style={{ display: "inline" }} className="pr-1 text-xl" />
                 <span>Orders</span>
               </Link>
             </li>
             <li
-              className={` hover:bg-[#f8f9fa] bg-white list-group-item hover:underline hover:underline-offset-1 flex items-center cursor-pointer `}
+              className={` hover:bg-white bg-[#f8f9fa] list-group-item hover:underline hover:underline-offset-1 flex items-center cursor-pointer `}
             >
+              <Link to={'/profile'} className="flex-grow">
               <CgProfile
                 style={{ display: "inline" }}
                 className="pr-1 text-xl"
               />
               Profile
+              </Link>
             </li>
             <li
-              className={` hover:bg-[#f8f9fa] bg-white list-group-item hover:underline hover:underline-offset-1 flex items-center cursor-pointer `}
+              className={` hover:bg-white bg-[#f8f9fa] list-group-item hover:underline hover:underline-offset-1 flex items-center cursor-pointer `}
             >
               <RiRoadMapLine
                 style={{ display: "inline" }}
@@ -60,7 +64,7 @@ function UserProfile(props) {
               Addresses
             </li>
             <li
-              className={` hover:bg-[#f8f9fa] bg-white list-group-item hover:underline hover:underline-offset-1 flex items-center cursor-pointer `}
+              className={` hover:bg-white bg-[#f8f9fa] list-group-item hover:underline hover:underline-offset-1 flex items-center cursor-pointer `}
             >
               <IoLogOutOutline
                 style={{ display: "inline" }}

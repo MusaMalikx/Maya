@@ -1,14 +1,11 @@
-import { BsSearch, BsTelephone } from "react-icons/bs"
+import { BsTelephone } from "react-icons/bs"
 import { FaRegUserCircle } from "react-icons/fa"
 import { IoMdCart } from "react-icons/io"
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import SearchBar from "../search/SearchBar"
-// import { useRouter } from "next/router"
 
 const Navbar = () => {
 
-    // const router = useRouter()
     const [y, setY] = useState(null);
 
     useEffect(() => {
@@ -53,24 +50,7 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse lg:flex lg:justify-end" id="navbarSupportedContent">
                     <div className="navbar-nav mb-2 mb-lg-0 flex items-center">
                         <li>
-                            <div className="flex text-2xl space-x-7 my-3 me-3">
-
-                                {/* <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    Launch demo modal
-                                </button> */}
-
-                                <BsSearch className="cursor-pointer hover:text-blue-700" data-bs-toggle="modal" data-bs-target="#exampleModal" />
-
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-xl">
-                                        <div class="modal-content">
-                                            <div class="modal-body">
-                                                <SearchBar />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {/* <BsSearch /> */}
+                            <div className="flex text-2xl space-x-7 my-3 lg:mr-6">
                                 <Link to={'/profile'}>
                                     <FaRegUserCircle className="cursor-pointer" />
                                 </Link>

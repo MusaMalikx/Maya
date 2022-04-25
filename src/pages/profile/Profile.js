@@ -9,15 +9,15 @@ const Profile = () => {
   return (
     <Layout title="Profile">
       <div className='container text-sm py-20'>
-        <div className='text-center'>
+        <div className='text-center pb-20'>
           <h1 className="uppercase tracking-[0.8rem] py-10 text-center text-4xl lg:text-6xl whitespace-nowrap">Your Profile</h1>
           {/* <div className={`${styles.heroheading} h1`}>Your Profile</div> */}
-          <p className="text-sm">
+          <div className="text-sm text-center text-muted">
             {" "}
             Maecenas sollicitudin. In rutrum. In convallis. Nunc tincidunt ante
             vitae massa. Cras pede libero, dapibus nec, retium sit amet, tempor
             quis. Fusce dui leo, imperdiet in.
-          </p>
+          </div>
         </div>
 
         <div className='flex flex-col lg:flex-row justify-center'>
