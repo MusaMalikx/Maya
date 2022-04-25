@@ -1,4 +1,26 @@
+import { useState } from "react";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
+
+  const navigate = useNavigate()
+  const [pass, setPass] = useState("")
+  const [email, setEmail] = useState("")
+  const [hid, setHid] = useState(false)
+  // console.log(pass, email)
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (pass === 'admin' && email === 'admin@maya.com') {
+      // console.log('true')
+      navigate('/admin')
+    }
+    else {
+      // console.log('false')
+    }
+  }
+
   return (
     <div>
       <div className="lg:w-[450px] xl:w-[600px]">
@@ -15,18 +37,24 @@ const Login = () => {
         </p>
         <hr />
         <br />
-        <form className="form-group">
+        <form className="form-group" onSubmit={handleSubmit}>
           <div className="mb-4 text-muted">
-            <label className="form-label" htmlFor="email_1">
+            <label className="form-label" htmlFor="email_1" autoComplete="off">
               EMAIL
             </label>
-            <input type="text" id="email_1" className="form-control" />
+            <input type="text" id="email_1" className="form-control" onChange={(e) => setEmail(e.target.value)} />
           </div>
           <div className="mb-4 text-muted">
             <label className="form-label" htmlFor="password">
               PASSWORD
             </label>
-            <input type="password" id="password" className="form-control" />
+            <div className="relative">
+              <input type={hid ? 'text' : 'password'} id="password" className="form-control" onChange={(e) => setPass(e.target.value)} />
+              <div className="text-2xl absolute top-2 right-3 hover:text-black cursor-pointer" onClick={() => setHid(!hid)}>
+                {hid ? <AiFillEyeInvisible />
+                  : <AiFillEye />}
+              </div>
+            </div>
           </div>
           <div
             data-bs-toggle="modal"
@@ -57,10 +85,10 @@ const Login = () => {
                 </div>
                 <div className="modal-body">
                   <div className="mb-4 text-muted">
-                    <label className="form-label" htmlFor="email_1">
+                    <label className="form-label" htmlFor="email">
                       EMAIL
                     </label>
-                    <input type="text" id="email_1" className="form-control" />
+                    <input type="text" id="email" className="form-control" autoComplete="off" />
                   </div>
                 </div>
                 <div className="modal-footer">

@@ -23,6 +23,12 @@ function UserProfile(props) {
             alt="userimage"
           />
         </div>
+        <div className="mb-10">
+          <div className="card-title  text-center h5">{props.name}</div>
+          <div className="card-subtitle mb-2 text-muted  text-center">
+            {props.address}
+          </div>
+        </div>
         <div className="flex items-center flex-col">
           <label htmlFor="avatar" className="text-sm tracking-widest btn">Update Profile Pic</label>
           <input id="avatar" className="form-control p-2 rounded-none" name="avatar"
@@ -30,13 +36,9 @@ function UserProfile(props) {
         </div>
         {/* className="card-img-top rounded-circle" */}
         <div className="card-body p-10">
-          <div className="card-title  text-center h5">{props.name}</div>
-          <div className="card-subtitle mb-2 text-muted  text-center">
-            {props.address}
-          </div>
           <ul className="list-group list-group-flush">
             <li
-            className={` hover:bg-white bg-[#f8f9fa] list-group-item hover:underline hover:underline-offset-1 flex items-center cursor-pointer `}
+              className={` hover:bg-white bg-[#f8f9fa] list-group-item hover:underline hover:underline-offset-1 flex items-center cursor-pointer `}
             >
               <Link to={`/orders/${props.name}`} className="flex-grow">
                 <BsLock style={{ display: "inline" }} className="pr-1 text-xl" />
@@ -47,11 +49,11 @@ function UserProfile(props) {
               className={` hover:bg-white bg-[#f8f9fa] list-group-item hover:underline hover:underline-offset-1 flex items-center cursor-pointer `}
             >
               <Link to={'/profile'} className="flex-grow">
-              <CgProfile
-                style={{ display: "inline" }}
-                className="pr-1 text-xl"
-              />
-              Profile
+                <CgProfile
+                  style={{ display: "inline" }}
+                  className="pr-1 text-xl"
+                />
+                Profile
               </Link>
             </li>
             <li

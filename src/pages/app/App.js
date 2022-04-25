@@ -10,6 +10,7 @@ import Footer from "../../components/footer/Footer";
 import 'bootstrap/dist/js/bootstrap.bundle';
 import ProductInfo from "../products/ProductInfo";
 import OrderInfo from "../orders/OrderInfo";
+import AdminPanel from "../admin/AdminPanel";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
       <div className="flex-grow">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/admin" element={<AdminPanel />} />
           <Route path="/products" element={<Products />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/login" element={<LoginSignUp />} />
