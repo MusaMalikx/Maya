@@ -1,4 +1,4 @@
-import Layout from "../../components/layout/Article";
+import Layout from "../../components/layout/Article"
 
 const AdminPanel = () => {
     return (
