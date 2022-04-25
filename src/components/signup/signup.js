@@ -19,19 +19,19 @@ const SignUp = () => {
         <br />
         <form className="form-group">
           <div className="mb-4 text-muted">
-            <label className="form-label" htmlFor="name">
+            <label className="form-label uppercase" htmlFor="name">
               Name
             </label>
             <input type="text" id="name" className="form-control" />
           </div>
           <div className="mb-4 text-muted">
-            <label className="form-label" htmlFor="email">
+            <label className="form-label uppercase" htmlFor="email">
               Email
             </label>
             <input type="text" id="email" className="form-control" />
           </div>
           <div className="mb-4 text-muted">
-            <label className="form-label" htmlFor="passwordRegister">
+            <label className="form-label uppercase" htmlFor="passwordRegister">
               Password
             </label>
             <input type="password" id="passwordRegister" className="form-control" />

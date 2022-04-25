@@ -13,18 +13,20 @@ import OrderInfo from "../orders/OrderInfo";
 
 const App = () => {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/login" element={<LoginSignUp />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/products/:id" element={<ProductInfo />} />
-        <Route path="/orders/:id" element={<OrderInfo />} />
-      </Routes>
+      <div className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/login" element={<LoginSignUp />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/products/:id" element={<ProductInfo />} />
+          <Route path="/orders/:id" element={<OrderInfo />} />
+        </Routes>
+      </div>
       <Footer />
     </div>
   );
