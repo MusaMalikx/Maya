@@ -1,6 +1,17 @@
 import React from "react";
+import styles from "../../pages/cart/Cart.module.css";
 // import React from "@types/react";
 const ProductInfo = () => {
+    const style_ob={
+
+        textTransform: "uppercase",
+        letterSpacing: ".3em",
+        lineHeight: "1.5",
+        padding: ".7rem .75rem",
+        fontSize: ".6875rem",
+        borderRadius: "0"
+
+    }
     return (
 
         <div className={`mx-5`}>
@@ -15,6 +26,7 @@ const ProductInfo = () => {
                         <label htmlFor="category" className="form-label">Category</label>
                         <input type="text" className="form-control" placeholder="Jackets and tops" id="category"/>
                     </div>
+                    
                     <div className="col-12 col-md-6 mb-3">
                         <label htmlFor="stock" className="form-label">Stock</label>
                         <input type="number" placeholder="Stock Available" className="form-control" min="1" step="1" id="stock"/>
@@ -23,6 +35,9 @@ const ProductInfo = () => {
                         <label htmlFor="price" className="form-label">Price</label>
                         <input type="number" placeholder="$123 " className="form-control" min="1" step="any" id="price"/>
                     </div>
+
+
+
                     <div className="col-12 col-md-6  py-2">
                         <label htmlFor="sizes" className="form-label tracking-widest">Available Sizes: </label>
                         <div className={`ml-2 pt-2 border-b border-grey-500`}>
@@ -54,7 +69,8 @@ const ProductInfo = () => {
                     </div>
                 </div>
                 <div className="d-flex justify-content-center px-4 mt-4 mb-5">
-                    <button className="btn btn-dark rounded-none mx-3">Add Product</button>
+                    {/*<button className="btn btn-dark rounded-none mx-3">Add Product</button>*/}
+                    <button className={`btn btn-dark `} style={style_ob}>Add Product</button>
                 </div>
             </form>
         </div>

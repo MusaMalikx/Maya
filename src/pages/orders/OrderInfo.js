@@ -5,36 +5,39 @@ import Items from "../../components/orders/Items";
 import Adresses from "../../components/orders/Adresses";
 import UserProfile from "../../components/profile/UserProfile";
 import Summary from "../../components/orders/Summary";
+import p1 from "../../assets/orderDetails/product1.jpg"
+import p2 from "../../assets/orderDetails/product2.jpg"
+import p3 from "../../assets/orderDetails/product3.jpg"
 function OrderInfo() {
-  const details = [
+  const details=[
     {
-      image_name: "product1",
-      name: "SKULL TREE",
-      size: "Large",
-      color: "Green",
-      price: "$65.00",
-      quantity: "2",
-      total: "$133.00"
+      image:p1,
+      name:"SKULL TREE",
+      size:"Large",
+      color:"Green",
+      price:"$65.00",
+      quantity:"2",
+      total:"$133.00"
 
     },
     {
-      image_name: "product1",
-      name: "BLACK TEE",
-      size: "Medium",
-      color: "none",
-      price: "$55.00",
-      quantity: "1",
-      total: "$55.00"
+      image:p2,
+      name:"BLACK TEE",
+      size:"Medium",
+      color:"none",
+      price:"$55.00",
+      quantity:"1",
+      total:"$55.00"
 
     },
     {
-      image_name: "product1",
-      name: "WHITE TEE",
-      size: "Meduim",
-      color: "none",
-      price: "$55.00",
-      quantity: "1",
-      total: "$55.00"
+      image:p3,
+      name:"WHITE TEE",
+      size:"Meduim",
+      color:"none",
+      price:"$55.00",
+      quantity:"1",
+      total:"$55.00"
 
     }
   ]

@@ -41,8 +41,17 @@ function UserProfile(props) {
               className={` hover:bg-white bg-[#f8f9fa] list-group-item hover:underline hover:underline-offset-1 flex items-center cursor-pointer `}
             >
               <Link to={`/orders/${props.name}`} className="flex-grow">
-                <BsLock style={{ display: "inline" }} className="pr-1 text-xl" />
-                <span>Orders</span>
+                <div className="flex justify-content-between">
+                  <div>
+                    <BsLock style={{ display: "inline" }} className="pr-1 text-xl" />
+                    <span>Orders</span>
+                  </div>
+                  <div>
+                    <span className="badge bg-dark">5</span>
+                  </div>
+                </div>
+
+
               </Link>
             </li>
             <li

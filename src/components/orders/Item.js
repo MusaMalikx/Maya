@@ -7,7 +7,7 @@ function Item({details}) {
       <>
     <div className='flex justify-between pt-3 flex-grow'>
       <div className='flex flex-row '>
-        <img src={img} height={80} width={80} alt='productimage' />
+        <img src={details.image} height={80} width={80} alt='productimage' />
         <div className="flex flex-col justify-center ml-1">
           <strong>{details.name}</strong>
           <small className='text-muted' style={{display:"block"}}>Size : {details.size}</small>
