@@ -11,7 +11,8 @@ import 'bootstrap/dist/js/bootstrap.bundle';
 import ProductInfo from "../products/ProductInfo";
 import OrderInfo from "../orders/OrderInfo";
 import AdminPanel from "../admin/AdminPanel";
-import NewProduct from "../AddProduct/AddProduct";
+import NewProduct from "../admin/AddProduct";
+import ProductList from "../admin/products";
 const App = () => {
     return (
         <div className="flex flex-col min-h-screen">
@@ -27,7 +28,8 @@ const App = () => {
                     <Route path="/profile" element={<Profile/>}/>
                     <Route path="/products/:id" element={<ProductInfo/>}/>
                     <Route path="/orders/:id" element={<OrderInfo/>}/>
-                    <Route path="/AddProduct" element={<NewProduct/>}/>
+                    <Route path="/admin/AddProduct" element={<NewProduct/>}/>
+                    <Route path="/admin/Products" element={<ProductList/>}/>
                 </Routes>
             </div>
             <Footer/>

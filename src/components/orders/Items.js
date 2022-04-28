@@ -4,7 +4,7 @@ import SmallItem from "./SmallItem";
 function Items(props) {
     return (
         <>
-        <div className="flex d-sm-none d-md-flex">
+        <div className="flex d-none d-md-flex">
             <div className="mx-3 flex-grow">
                 <div className="p-3 mt-4 flex flex-row justify-between mb-3">
 
