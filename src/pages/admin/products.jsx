@@ -3,7 +3,7 @@ import ProductTable from "../../components/productList/ProductTable";
 import img1 from "../../assets/orderDetails/product1.jpg"
 import img2 from "../../assets/orderDetails/product2.jpg"
 import img3 from "../../assets/orderDetails/product3.jpg"
-import img4 from "../../assets/productDetail/jacket.jpg"
+import { Link } from "react-router-dom";
 const ProductsList=()=>{
     const mystyle={
         textTransform: "uppercase",
@@ -47,8 +47,9 @@ const ProductsList=()=>{
         <div className={`container`}>
             <h1 className="uppercase tracking-[0.8rem] py-10 text-center text-4xl lg:text-6xl whitespace-nowrap">PRODUCTS</h1>
             <div className={`flex justify-end pb-4`}>
-
+                <Link to={'/admin/AddProduct'} >
                 <button className={`btn btn-dark `} style={mystyle}>Add New</button>
+                </Link>
             </div>
          <ProductTable products={products}/>
         </div>
