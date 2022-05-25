@@ -26,7 +26,7 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-const MONGO = "mongodb://localhost:27017/Assignment4"
+const MONGO = "mongodb://localhost:27017/MAYADB"
 
 const connect = async () => {
   try {

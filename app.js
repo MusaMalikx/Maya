@@ -3,8 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const dotenv = require("dotenv");
 
+dotenv.config();
+
+//Routes
 const userRoute = require('./routes/userRoutes')
+const authRoute = require('./routes/auth') 
 
 var app = express();
 
@@ -19,6 +24,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //middlewares
+app.use('/auth', authRoute)
 app.use('/users', userRoute)
 
 // catch 404 and forward to error handler
