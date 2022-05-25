@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const OrderTable = () => {
   return (
     <div>
@@ -23,12 +25,14 @@ const OrderTable = () => {
                 </span>
               </td>
               <td className="py-4 align-middle">
-                <button
-                  type="button"
-                  className="btn btn-outline-dark btn-sm rounded-none"
-                >
-                  View
-                </button>
+                <Link to={`/orders/123`} className="">
+                  <button
+                    type="button"
+                    className="btn btn-outline-dark btn-sm rounded-none"
+                  >
+                    View
+                  </button>
+                </Link>
               </td>
             </tr>
             <tr>

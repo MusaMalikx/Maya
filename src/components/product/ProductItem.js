@@ -9,8 +9,8 @@ const ProductItem = ({ items }) => {
     // const router = useRouter()
 
     return (
-        <div className="m-2">
-            <div className="relative w-[210px] mb-2" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+        <div className="m-2 card card-body">
+            <div className="relative w-[250px] mb-2" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
                 <div className="border-b-2 border-b-black flex w-[250px]" >
                     {
                         items.fresh ?
@@ -34,10 +34,8 @@ const ProductItem = ({ items }) => {
                                     <div className="bg-[#921925] top-[28px] -left-[0.5rem] absolute h-4 w-4 origin-center rotate-45" />
                                 </div>
                     }
-
                     <img className="z-10" src={items.pic} width={250} height={354} alt="last viewed 1" />
                 </div>
-
                 {
                     hover &&
                     <div className="h-[377px] w-[250px] z-10 absolute bg-[#fffffe] top-0 bg-opacity-75 text-white flex justify-center items-center border-b-2 border-b-sky-600">

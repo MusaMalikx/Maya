@@ -4,7 +4,7 @@ import TransRowSm from "./TransRowSm";
 import styles from "./admin.module.css"
 const TransactionTable=(props)=>{
     return(
-        <div className={`${styles.revenue} mt-4 mb-10`}>
+        <div className={`${styles.revenue} mt-4 mb-10 p-3`}>
             <div className='d-none d-md-block'>
             <div className={`text-muted text-lg pl-2 mb-2 `}>Latest Transactions</div>
             <div className="table table-responsive ">

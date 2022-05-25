@@ -13,7 +13,7 @@ const ProductTable = (props) => {
                         <th className="py-4 text-sm uppercase tracking-widest">PRODUCT</th>
                         <th className="py-4 text-sm uppercase tracking-widest">PRICE</th>
                         <th className="py-4 text-sm uppercase tracking-widest">Stock</th>
-                        <th className="py-4 text-sm uppercase tracking-widest tracking-widest">ACTION</th>
+                        <th className="py-4 text-sm uppercase tracking-widest">ACTION</th>
                     </tr>
                     </thead>
                     <tbody>

@@ -6,77 +6,78 @@ import TransactionTable from "../../components/admin/TransactionTable";
 import img1 from "../../assets/orderDetails/product1.jpg"
 import img2 from "../../assets/orderDetails/product2.jpg"
 import img3 from "../../assets/orderDetails/product3.jpg"
+import { Link, useNavigate } from "react-router-dom";
 const AdminPanel = () => {
-    const transactions=[
+    const transactions = [
         {
-            trackingID:"#1234",
-            product:"BLACK TEE",
-            image:img1,
-            customer:"MUSA MALIK",
-            date:"27-9-21",
-            price:"$33",
-            status:"Delivered"
+            trackingID: "#1234",
+            product: "BLACK TEE",
+            image: img1,
+            customer: "MUSA MALIK",
+            date: "27-9-21",
+            price: "$33",
+            status: "Delivered"
         },
         {
-            trackingID:"#4321",
-            product:"WHITE TEE",
-            image:img2,
-            customer:"YAHYA KHAN",
-            date:"21-4-22",
-            price:"$21",
-            status:"Pending"
+            trackingID: "#4321",
+            product: "WHITE TEE",
+            image: img2,
+            customer: "YAHYA KHAN",
+            date: "21-4-22",
+            price: "$21",
+            status: "Pending"
         },
         {
-            trackingID:"#4131",
-            product:"RED TEE",
-            image:img1,
-            customer:"ABDULLAH",
-            date:"2-2-21",
-            price:"$67",
-            status:"Pending"
+            trackingID: "#4131",
+            product: "RED TEE",
+            image: img1,
+            customer: "ABDULLAH",
+            date: "2-2-21",
+            price: "$67",
+            status: "Pending"
         },
         {
-            trackingID:"#0007",
-            product:"GOLDEN TEE",
-            image:img3,
-            customer:"ABDULLAH NAEEM",
-            date:"2-9-22",
-            price:"$333",
-            status:"Delivered"
+            trackingID: "#0007",
+            product: "GOLDEN TEE",
+            image: img3,
+            customer: "ABDULLAH NAEEM",
+            date: "2-9-22",
+            price: "$333",
+            status: "Delivered"
         }
     ]
-    const stats=[
+    const stats = [
         {
-            percentage:"20",
-            count:"200",
-            profit:false
+            percentage: "20",
+            count: "200",
+            profit: false
         }
         ,
         {
-            percentage:"30",
-            count:"50",
-            profit:true
+            percentage: "30",
+            count: "50",
+            profit: true
         }
         ,
         {
-            percentage:"10",
-            count:"120",
-            profit:false
+            percentage: "10",
+            count: "120",
+            profit: false
         }
         ,
         {
-            percentage:"17",
-            count:"103",
-            profit:true
+            percentage: "17",
+            count: "103",
+            profit: true
         }
     ]
-    const data= {
-            month:"12.4",
-            week:"12.4",
-            target:"12.4",
-            total_revenue:"400",
-            percentage:"70"
-        }
+    const data = {
+        month: "12.4",
+        week: "12.4",
+        target: "12.4",
+        total_revenue: "400",
+        percentage: "70"
+    }
 
     const monthly_data = [
         { name: "January", Total: 1200 },
@@ -86,22 +87,33 @@ const AdminPanel = () => {
         { name: "May", Total: 900 },
         { name: "June", Total: 1700 },
     ];
+
+    const navigate = useNavigate();
+
     return (
         <Layout title="Admin Panel">
-            <div className="py-10 container">
-                <div className="pb-5 text-center tracking-widest">
+            <div className="py-10 container-xxl ">
+                <div className="text-center tracking-widest">
                     <h1 className="uppercase tracking-[0.8rem] py-10 text-center text-4xl lg:text-6xl whitespace-nowrap">Admin Panel</h1>
                 </div>
-                <StatsBlock stats={stats}/>
+                <Link to={'/admin/addproduct'}>
+                    <button
+                        type="submit"
+                        className="btn btn-sm px-4 py-2 rounded-none btn-outline-dark flex items-center space-x-2 tracking-widest mx-auto mb-14"
+                    >
+                        <span>Add Product</span>
+                    </button>
+                </Link>
+                <StatsBlock stats={stats} />
                 <div className={`row`}>
                     <div className={`col-12 col-lg-4`}>
-                   <RevenueBlock revenue={data}/>
+                        <RevenueBlock revenue={data} />
                     </div>
                     <div className={`col-12 col-lg-8`}>
-                        <Chart data={monthly_data}  />
+                        <Chart data={monthly_data} />
                     </div>
                     <div className={`col-12`}>
-                       <TransactionTable trans={transactions}/>
+                        <TransactionTable trans={transactions} />
                     </div>
                 </div>
             </div>

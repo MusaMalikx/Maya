@@ -10,6 +10,7 @@ import { MdArrowLeft, MdArrowRight } from "react-icons/md"
 import { RiSkipForwardMiniFill, RiSkipBackMiniFill } from "react-icons/ri"
 import Layout from '../../components/layout/Article'
 import SearchBar from "../../components/search/SearchBar";
+import List from "../../components/product/ProductList"
 // import RecentSearches from "../search/RecentSearches"
 
 const Products = () => {
@@ -20,23 +21,12 @@ const Products = () => {
                     Products
                 </h1>
                 <SearchBar />
-                <div className="py-20 space-y-5">
-                    {CategoryList.map((l, i) => (
-                        <CategoryItem key={i} name={l.name} index={i}>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center">
-                                {l.name ===  "Jackets" &&
-                                    JL.map((jl, k) => <ProductItem key={k} items={jl} />)}
-                                {l.name ===  "Top & Blouses" &&
-                                    TBL.map((tbl, k) => <ProductItem key={k} items={tbl} />)}
-                                {l.name ===  "Jeans" &&
-                                    J.map((j, k) => <ProductItem key={k} items={j} />)}
-                                {l.name ===  "Sweaters" &&
-                                    SL.map((sl, k) => <ProductItem key={k} items={sl} />)}
-                                {l.name ===  "Shirts" &&
-                                    S.map((s, k) => <ProductItem key={k} items={s} />)}
-                            </div>
-                        </CategoryItem>
-                    ))}
+                <div className="py-20 space-y-20">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center">
+                        {List.map((item, i) => (
+                            <ProductItem key={i} items={item} />
+                        ))}
+                    </div>
                     <div
                         className="btn-toolbar hidden lg:flex items-center justify-center mt-10"
                         role="toolbar"

@@ -112,7 +112,7 @@ const ProductInfo = () => {
 
 
                 <div className="d-flex justify-content-center px-4 mt-4 mb-5">
-                    <button className={`btn btn-dark `} style={style_ob}>Add Product</button>
+                    <button className={`btn btn-dark px-4`} style={style_ob}>Save</button>
                 </div>
             </form>
         </div>

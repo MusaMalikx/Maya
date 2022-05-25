@@ -40,7 +40,7 @@ function UserProfile(props) {
             <li
               className={` hover:bg-white bg-[#f8f9fa] list-group-item hover:underline hover:underline-offset-1 flex items-center cursor-pointer `}
             >
-              <Link to={`/orders/${props.name}`} className="flex-grow">
+              <Link to={`/orders`} className="flex-grow">
                 <div className="flex justify-content-between">
                   <div>
                     <BsLock style={{ display: "inline" }} className="pr-1 text-xl" />
@@ -65,7 +65,7 @@ function UserProfile(props) {
                 Profile
               </Link>
             </li>
-            <li
+            {/* <li
               className={` hover:bg-white bg-[#f8f9fa] list-group-item hover:underline hover:underline-offset-1 flex items-center cursor-pointer `}
             >
               <RiRoadMapLine
@@ -73,7 +73,7 @@ function UserProfile(props) {
                 className="pr-1 text-xl"
               />
               Addresses
-            </li>
+            </li> */}
             <li
               className={` hover:bg-white bg-[#f8f9fa] list-group-item hover:underline hover:underline-offset-1 flex items-center cursor-pointer `}
             >

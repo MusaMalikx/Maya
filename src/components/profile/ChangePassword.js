@@ -11,7 +11,7 @@ function ChangePassword() {
             <label htmlFor="oldpassword" className="form-label">OLD PASSWORD</label>
             <input type="password" className="form-control" id="pw1" />
           </div>
-          <div className="col-6"/>
+          <div className="col-6" />
           <div className="col-12 col-md-6 mb-3">
             <label htmlFor="newpassword" className="form-label">NEW PASSWORD</label>
             <input type="password" className="form-control" id="pw2" />
@@ -22,7 +22,9 @@ function ChangePassword() {
           </div>
         </div>
         <div className="d-flex justify-content-center mt-4 mb-5">
-          <button className="btn btn-dark rounded-none p-2">CHANGE PASSWORD</button>
+          <button className="btn btn-sm px-4 py-2 my-2 rounded-none btn-outline-dark flex items-center space-x-2 tracking-widest mx-auto">
+            Change Password
+          </button>
         </div>
       </form>
     </div>

@@ -71,7 +71,9 @@ function PersonalDetails() {
           </div>
         </div>
         <div className='d-flex justify-content-center mt-4 mb-5'>
-          <button className='btn btn-dark rounded-none p-2 pl-3'>SAVE CHANGES</button>
+        <button className="btn btn-sm px-4 py-2 my-2 rounded-none btn-outline-dark flex items-center space-x-2 tracking-widest mx-auto">
+            Save Changes
+          </button>
         </div>
       </form>
     </div>

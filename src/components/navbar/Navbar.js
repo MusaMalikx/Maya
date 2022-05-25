@@ -25,7 +25,7 @@ const Navbar = () => {
     }, []);
 
     return (
-        <div className="">
+        <div className={` ${y > 50 && 'mt-[4rem]'}`}>
             <div className="container-fluid hidden md:flex bg-[#e9ecef] p-2 py-3 text-sm space-x-5 text-muted tracking-widest">
                 <div className=" flex items-center">
                     <BsTelephone className="me-2" />
