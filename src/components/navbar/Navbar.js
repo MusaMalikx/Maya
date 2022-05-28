@@ -2,11 +2,20 @@ import { BsTelephone } from "react-icons/bs"
 import { FaRegUserCircle } from "react-icons/fa"
 import { IoMdCart } from "react-icons/io"
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import axios from "axios"
+// import { useSelector, useDispatch } from "react-redux"
+// import { selectUser, setUser } from "../../features/userSlice"
 
 const Navbar = () => {
 
     const [y, setY] = useState(null);
+    const navigate = useNavigate()
+    const [bool, setBool] = useState(false)
+    // const [loading, setLoading] = useState(false)
+    // const dispatch = useDispatch()
+    // const bool = useSelector(selectUser)
+    // console.log(bool)
 
     useEffect(() => {
         setY(window.scrollY);
@@ -17,12 +26,37 @@ const Navbar = () => {
 
         };
 
+        const checkUser = async () => {
+            await axios.get('/user/check/authentication').then(function (res) {
+                setBool(res.data.bool)
+                console.log(res.data.bool)
+            }).catch(function (err) {
+                console.log(err)
+            })
+        }
+
+        checkUser();
+
         window.addEventListener("scroll", handleNavigation);
 
         return () => {
             window.removeEventListener("scroll", handleNavigation);
         };
     }, []);
+
+    const handleLogout = async (e) => {
+        e.preventDefault();
+
+        await axios.get('/user/destroy/authentication').then(function (res) {
+            console.log(res)
+        })
+        // setSession(false);
+        // setLoading(true)
+        setBool(false)
+        // dispatch(setUser(false))
+        navigate('/login')
+
+    }
 
     return (
         <div className={` ${y > 50 && 'mt-[4rem]'}`}>
@@ -49,17 +83,46 @@ const Navbar = () => {
                 </button>
                 <div className="collapse navbar-collapse lg:flex lg:justify-end" id="navbarSupportedContent">
                     <div className="navbar-nav mb-2 mb-lg-0 flex items-center">
-                        <li>
-                            <div className="flex text-2xl space-x-7 my-3 lg:mr-6">
-                                <Link to={'/profile'}>
-                                    <FaRegUserCircle className="cursor-pointer" />
-                                </Link>
-                                <Link to={'/cart'}>
-                                    <IoMdCart className="cursor-pointer" />
-                                </Link>
-                            </div>
-                        </li>
-                        <li className="nav-item">
+                        {
+                            bool ?
+                                <>
+                                    <li>
+                                        <div className="flex text-2xl space-x-7 my-3 lg:mr-6">
+                                            <Link to={'/profile'}>
+                                                <FaRegUserCircle className="cursor-pointer" />
+                                            </Link>
+                                            <Link to={'/cart'}>
+                                                <IoMdCart className="cursor-pointer" />
+                                            </Link>
+                                        </div>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to={'/products'}>
+                                            <p className="nav-link tracking-widest cursor-pointer">Products</p>
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to={'/orders'}>
+                                            <p className="nav-link tracking-widest cursor-pointer" aria-current="page" href="/products">Orders</p>
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <p className="nav-link tracking-widest mb-1 lg:mb-0 lg:mr-1 cursor-pointer"
+                                            onClick={handleLogout}
+                                        >Logout</p>
+                                    </li>
+                                </>
+                                :
+                                <>
+
+                                    <li className="nav-item">
+                                        <Link to={'/login'}>
+                                            <p className="nav-link tracking-widest mb-1 lg:mb-0 lg:mr-1 cursor-pointer">Login</p>
+                                        </Link>
+                                    </li>
+                                </>
+                        }
+                        {/* <li className="nav-item">
                             <Link to={'/products'}>
                                 <p className="nav-link tracking-widest cursor-pointer">Products</p>
                             </Link>
@@ -70,10 +133,17 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to={'/login'}>
-                                <p className="nav-link tracking-widest mb-1 lg:mb-0 lg:mr-1 cursor-pointer">Login</p>
-                            </Link>
-                        </li>
+                            {
+                                bool ?
+                                    <p className="nav-link tracking-widest mb-1 lg:mb-0 lg:mr-1 cursor-pointer"
+                                        onClick={handleLogout}
+                                    >Logout</p>
+                                    :
+                                    <Link to={'/login'}>
+                                        <p className="nav-link tracking-widest mb-1 lg:mb-0 lg:mr-1 cursor-pointer">Login</p>
+                                    </Link>
+                            }
+                        </li> */}
                     </div>
                 </div>
             </div>

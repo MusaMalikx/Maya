@@ -1,8 +1,33 @@
 import SignUp from "../../components/register/Register";
 import Login from "../../components/checkin/CheckIn";
 import Layout from "../../components/layout/Article";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const LoginSignUp = () => {
+
+    const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        const checkUser = async () => {
+            await axios.get('/user/check/authentication').then(function (res) {
+                // console.log(res)
+                if (res.data.bool === true) {
+                    navigate("/")
+                }
+                else {
+                    setLoading(false)
+                }
+            }).catch(function (err) {
+                console.log(err)
+            })
+        }
+
+        checkUser();
+    }, [navigate])
+
     return (
         <div>
             <Layout title="Customer Zone">

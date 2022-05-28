@@ -1,24 +1,34 @@
+import axios from "axios";
 import { useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
   const [pass, setPass] = useState("")
   const [email, setEmail] = useState("")
   const [hid, setHid] = useState(false)
   // console.log(pass, email)
 
-  const handleSubmit = (e) => {
+  // const dispatch = useDispatch()
+
+  const handleSubmit = async(e) => {
     e.preventDefault()
-    if (pass === 'admin' && email === 'admin@maya.com') {
-      // console.log('true')
-      navigate('/admin')
-    }
-    else {
-      // console.log('false')
-    }
+    await axios.post('/auth/login', {
+      email: email,
+      password: pass
+    }).then((res) => {
+      console.log(res)
+      setEmail("")
+      setPass("")
+      navigate('/')
+      // dispatch(setUser(true))
+    }).catch((err) => {
+      console.log(err)
+      alert("Kindly Enter the correct credentials!")
+    })
   }
 
   return (
