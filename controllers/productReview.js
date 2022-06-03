@@ -1,4 +1,6 @@
+const ProductReview = require("../models/ProductReview");
 const Review = require("../models/ProductReview");
+const pageChecker = require("../utils/pageChecker");
 
 const addReview = async (req, res, next) => {
   const newReview = new Review(req.body);
@@ -43,7 +45,7 @@ const getReview = async (req, res, next) => {
 
 const getAllReviews = async (req, res, next) => {
   try {
-    console.log(req.query.pid) 
+    console.log(req.query.pid)
     const reviews = await Review.find();
     res.status(200).json(reviews);
   } catch (err) {
@@ -51,13 +53,65 @@ const getAllReviews = async (req, res, next) => {
   }
 };
 
-const getProductReviews = async (req,res,next) => {
+const getProductReviews = async (req, res, next) => {
+
   try {
-    const reviews = await Review.find({ PID: req.params.pid });
-    res.status(200).json(reviews);
-} catch (err) {
+
+    const page = req.query.p
+    console.log(page)
+
+    if (page) {
+
+      const maxreviews = 3;
+      var pages = 0
+      // const end = req.query.e
+      const reviews = await ProductReview.find({ PID: req.params.pid });
+      // console.log(start, end)
+
+      const mod = reviews.length % maxreviews
+
+      if (mod == 0) {
+        pages = Math.trunc(reviews.length / maxreviews)
+      }
+      else {
+        pages = Math.trunc(reviews.length / maxreviews) + 1
+      }
+
+      const start = pageChecker(page, maxreviews, reviews.length, mod)
+
+      let end = 0
+
+      if (page * maxreviews <= reviews.length) {
+        end = start + maxreviews
+      }
+      else {
+        end = reviews.length
+      }
+
+      // console.log(start, end)
+
+      res.status(200).json(
+        {
+          reviews: reviews.slice(start, end),
+          length: reviews.length,
+          pages: pages
+        }
+      )
+    }
+    else {
+      const reviews = await Review.find({ PID: req.params.pid });
+      res.status(200).json(reviews);
+    }
+  } catch (err) {
     next(err);
-}
+  }
+
+  // try {
+  //   const reviews = await Review.find({ PID: req.params.pid });
+  //   res.status(200).json(reviews);
+  // } catch (err) {
+  //   next(err);
+  // }
 }
 
 module.exports = {

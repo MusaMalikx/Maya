@@ -25,13 +25,13 @@ const AddToCart = async (req, res, next) => {
   const productID = req.body.productID;
   const count = req.body.count;
   const UserID = req.params.id;
-
+  console.log(UserID)
   try {
 
     const product = await Product.findById(productID);
     const sub_total = parseInt(product.price) * count;
 
-    const cart = await Cart.findOne({ user_id: UserID });
+    const cart = await Cart.findOne({ uid: UserID });
 
     const productsInCart = cart.products;
 
@@ -51,6 +51,7 @@ const AddToCart = async (req, res, next) => {
         name: product.name,
         size: product.size,
         price: product.price,
+        image: product.image,
         quantity: count,
         total: sub_total,
       }

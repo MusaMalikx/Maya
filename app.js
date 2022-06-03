@@ -5,11 +5,17 @@ var cookieParser = require('cookie-parser');
 const cors = require('cors')
 var logger = require('morgan');
 const session = require('express-session');
-const MongodbSession = require('connect-mongodb-session')(session);
 const dotenv = require("dotenv");
+const passport = require('passport');
+
+const bodyParser = require('body-parser')
+const MongodbSession = require('connect-mongodb-session')(session);
 const MONGO = "mongodb://localhost:27017/MAYADB"
 
 dotenv.config();
+
+//Passport config
+const passportSetup = require("./passport");
 
 //Routes
 const userRoute = require('./routes/userRoutes')
@@ -42,7 +48,9 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json({ limit: '500kb' }))
+app.use(passport.initialize());
 
 //middlewares
 app.use('/auth', authRoute)

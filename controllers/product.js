@@ -51,10 +51,22 @@ const getAllProducts = async (req, res, next) => {
   }
 };
 
+const searchProducts = async (req, res, next) => {
+  try {
+    console.log("in here")
+    const products = await Product.find({"category":req.body.category});
+    console.log(products)
+    res.status(200).json(products);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   addProduct,
   updateProduct,
   deleteProduct,
   getProdcut,
   getAllProducts,
+  searchProducts
 };

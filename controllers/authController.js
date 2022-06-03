@@ -51,6 +51,7 @@ module.exports = {
             // check if its password matches
 
             if (await bcrypt.compare(req.body.password, user.password)) {
+
                 // console.log(user)
                 // const accessToken = jwt.sign(
                 // {
@@ -61,12 +62,19 @@ module.exports = {
                 // {expiresIn: "1d"}
                 // );
 
+                const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.JWT_SEC);
+
                 const { password, ...others } = user._doc;
-                req.session.isAuth = true;
-                req.session.user = { ...others }
+                // req.session.isAuth = true;
+                // req.session.user = { ...others }
                 // console.log({ ...others })
 
-                res.status(200).json({ ...others });
+                object = {
+                    token: token,
+                    user: { ...others }
+                }
+                res.status(200)
+                    .json(object)
 
             }
             else {

@@ -10,27 +10,47 @@ const userModel = require('../models/userModel')
 module.exports = {
 
     uploadImage: async (req, res, next) => {
+        // try {
+        //     console.log(req.file);
+
+        //     const user = await userModel.findByIdAndUpdate(req.params.id, { picture: req.file.path }, { new: true })
+        //     res.status(200).json("file uploaded!")
+        // } catch (err) {
+        //     next(err)
+        // }
+
+        // console.log(req.body)
+
         try {
-            console.log(req.file);
-    
-            const user = await userModel.findByIdAndUpdate(req.params.id, { picture: req.file.path }, { new: true })
-            res.status(200).json("file uploaded!")
-        } catch (err) {
-            next(err)
+            const user = await userModel.findByIdAndUpdate(req.params.id, { picture: req.body.image }, { new: true })
+            res.status(200).json("Picture uploaded!")
+            // res.status(200).json(item);
+        } catch (error) {
+            next(error)
+
         }
+
     },
 
     image: async (req, res, next) => {
+        // try {
+        //     console.log(req.file);
+
+        //     const user = await userModel.findOne({ _id: req.params.id })
+
+        //     // res.setHeader('Content-Type', 'image/jpeg')
+        //     res.download(user.picture)
+        //     // res.status(200).json("file has been sent!")
+        // } catch (err) {
+        //     next(err)
+        // }
         try {
-            console.log(req.file);
-
-            const user = await userModel.findOne({ _id: req.params.id })
-
-            // res.setHeader('Content-Type', 'image/jpeg')
-            res.download(user.picture)
-            // res.status(200).json("file has been sent!")
-        } catch (err) {
-            next(err)
+            const user = await userModel.findById({ _id: req.params.id })
+            // await item.save();
+            console.log(user)
+            res.status(201).json(user.picture);
+        } catch (error) {
+            next(error)
         }
     },
 
@@ -74,6 +94,17 @@ module.exports = {
         });
     },
 
+
+    //  getAlluser
+
+    getAllUsers: function (req, res) {
+
+        console.log("here")
+        UserModel.count({}, function (err, count) {
+            console.log("Number of users:", count);
+            return res.json(count);
+        })
+    },
 
 
     /**

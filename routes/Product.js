@@ -1,36 +1,35 @@
 const express = require('express');
-const multer = require('multer');
-const { request } = require('../app');
+// const multer = require('multer');
+// const { request } = require('../app');
 
-const { addProduct, updateProduct, deleteProduct, getProdcut, getAllProducts } = require("../controllers/product");
+const { addProduct, updateProduct, deleteProduct, getProdcut, getAllProducts,searchProducts } = require("../controllers/product");
 const Product = require('../models/Product');
 const router = express.Router();
 
-const storage = multer.diskStorage({
-    destination: (req,file,cb) => {
-        cb(null,'./public/products')
-    },
-    filename: (req,file,cb) => {
-        cb(null,Date.now() + '--' + file.originalname)
-    }
-})
+// const storage = multer.diskStorage({
+//     destination: (req,file,cb) => {
+//         cb(null,'./public/products')
+//     },
+//     filename: (req,file,cb) => {
+//         cb(null,Date.now() + '--' + file.originalname)
+//     }
+// })
 
-const upload = multer({storage: storage})
-
+// const upload = multer({storage: storage})
+// upload.single("product"), 
 router.post('/', addProduct)
-router.post('/image/:id', upload.single("product"), async (req, res, next) => {
-    // try {console.log(req.file);
-    // res.status(200).json("file uploaded!")
-    // } catch (err) {
-    //     next(err)
-    // }
-    try {
-        console.log(req.file);
+router.post('/image/:id', async (req, res, next) => {
 
-        const user = await Product.findByIdAndUpdate(req.params.id, { picture: req.file.path }, { new: true })
-        res.status(200).json("file uploaded!")
-    } catch (err) {
-        next(err)
+    console.log(req.body.myFile);
+    try {
+        const product = await Product.findByIdAndUpdate(req.params.id, { picture: req.body }, { new: true })
+        // const newImage = await Post.create(body);
+        product.save();
+        res.status(201).json({ message: "new image uploaded", createdPost: newImage });
+    } catch (error) {
+        res.status(409).json({
+            message: error.message,
+        });
     }
 })
 
@@ -41,5 +40,7 @@ router.delete('/:id', deleteProduct)
 router.get('/:id', getProdcut)
 
 router.get('/', getAllProducts)
+
+router.get('/search/products', searchProducts)
 
 module.exports = router;
