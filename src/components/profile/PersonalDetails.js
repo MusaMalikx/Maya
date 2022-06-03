@@ -13,60 +13,61 @@ function PersonalDetails() {
   const [state, setState] = useState("");
   const [country, setCountry] = useState("");
   const [telephone, setTelephone] = useState("");
-  const [user, setUser] = useState(null);
+  const [auth, setAuth] = useState(JSON.parse(localStorage.getItem('auth')))
+  // const [user, setUser] = useState(null);
 
   // const user = useSelector(selectUser)
   // console.log(user)
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    // const user_data = async () => {
-    //   await axios.get(`/user/${user._id}`)
-    //     .then((res) => {
-    //       console.log(res)
-    //     })
-    //     .catch((err) => {
-    //       console.log(err)
-    //     })
-    // }
+  //   // const user_data = async () => {
+  //   //   await axios.get(`/user/${user._id}`)
+  //   //     .then((res) => {
+  //   //       console.log(res)
+  //   //     })
+  //   //     .catch((err) => {
+  //   //       console.log(err)
+  //   //     })
+  //   // }
 
-    const checkUser = async () => {
-      await axios.get('/user/check/authentication').then(async (res) => {
-        console.log(res)
-        setUser(res.data.user)
+  //   const checkUser = async () => {
+  //     await axios.get('/user/check/authentication').then(async (res) => {
+  //       console.log(res)
+  //       setUser(res.data.user)
 
-        // await axios.get(`/user/${res.data.user._id}`)
-        // .then((res) => {
-        //   console.log(res)
-        // })
-        // .catch((err) => {
-        //   console.log(err)
-        // })
-        // if (res.data.bool === true) {
-        //     navigate("/")
-        // }
-        // else {
-        //     navigate("/login")
-        // }
-      }).catch(function (err) {
-        console.log(err)
-      })
-    }
-    checkUser();
+  //       // await axios.get(`/user/${res.data.user._id}`)
+  //       // .then((res) => {
+  //       //   console.log(res)
+  //       // })
+  //       // .catch((err) => {
+  //       //   console.log(err)
+  //       // })
+  //       // if (res.data.bool === true) {
+  //       //     navigate("/")
+  //       // }
+  //       // else {
+  //       //     navigate("/login")
+  //       // }
+  //     }).catch(function (err) {
+  //       console.log(err)
+  //     })
+  //   }
+  //   checkUser();
 
-    // user_data();
+  //   // user_data();
 
-    // return (() => {
-    //   setName(user.name);
-    //   setEmail(user.email)
-    //   setStreet(user.street)
-    //   setCompany(user.company)
-    //   setState(user.state)
-    //   setCountry(user.country)
-    //   setTelephone(user.telephone)
-    // })
+  //   // return (() => {
+  //   //   setName(user.name);
+  //   //   setEmail(user.email)
+  //   //   setStreet(user.street)
+  //   //   setCompany(user.company)
+  //   //   setState(user.state)
+  //   //   setCountry(user.country)
+  //   //   setTelephone(user.telephone)
+  //   // })
 
-  }, [])
+  // }, [])
 
   // useEffect(() => {
   //   const user_data = async () => {
@@ -104,7 +105,7 @@ function PersonalDetails() {
     e.preventDefault()
     // console.log(name, email, street, company, state, country, telephone)
 
-    await axios.put(`/user/savechanges/${user._id}`, {
+    await axios.put(`/user/savechanges/${auth.user._id}`, {
       name: name,
       email: email,
       street: street,

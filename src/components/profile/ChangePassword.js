@@ -9,26 +9,28 @@ function ChangePassword() {
   const [oldPass, setOldPassword] = useState("");
   const [newPass, setNewPassword] = useState("");
   const [conPass, setConPassword] = useState("");
-  const [user, setUser] = useState(null)
+  const [auth, setAuth] = useState(JSON.parse(localStorage.getItem('auth')))
+  // const [user, setUser] = useState(null)
+  
 
-  useEffect(() => {
-    const checkUser = async () => {
-        await axios.get('/user/check/authentication').then(function (res) {
-            console.log(res)
-            setUser(res.data.user)
-            // if (res.data.bool === true) {
-            //     navigate("/")
-            // }
-            // else {
-            //     navigate("/login")
-            // }
-        }).catch(function (err) {
-            console.log(err)
-        })
-    }
+//   useEffect(() => {
+//     const checkUser = async () => {
+//         await axios.get('/user/check/authentication').then(function (res) {
+//             console.log(res)
+//             setUser(res.data.user)
+//             // if (res.data.bool === true) {
+//             //     navigate("/")
+//             // }
+//             // else {
+//             //     navigate("/login")
+//             // }
+//         }).catch(function (err) {
+//             console.log(err)
+//         })
+//     }
 
-    checkUser();
-}, [])
+//     checkUser();
+// }, [])
 
   // const user = useSelector(selectUser)
   // console.log(oldPass, newPass)
@@ -38,7 +40,7 @@ function ChangePassword() {
 
     if (newPass === conPass) {
 
-      await axios.put(`/user/changepassword/${user._id}`, {
+      await axios.put(`/user/changepassword/${auth.user._id}`, {
         oldpassword: oldPass,
         newpassword: newPass
       }).then((res) => {

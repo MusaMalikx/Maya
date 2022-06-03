@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 const ProductItem = ({ items }) => {
 
     const [hover, setHover] = useState(false)
+    // console.log(items)
     // const router = useRouter()
 
     return (
@@ -34,7 +35,7 @@ const ProductItem = ({ items }) => {
                                     <div className="bg-[#921925] top-[28px] -left-[0.5rem] absolute h-4 w-4 origin-center rotate-45" />
                                 </div>
                     }
-                    <img className="z-10" src={items.pic} width={250} height={354} alt="last viewed 1" />
+                    <img className="z-10" src={items.image} width={250} height={354} alt="poster" />
                 </div>
                 {
                     hover &&
@@ -42,7 +43,7 @@ const ProductItem = ({ items }) => {
                         <button className="btn btn-outline-dark p-2 rounded-none me-1 cursor-pointer">
                             <BsFillCartPlusFill />
                         </button>
-                        <Link to={`/products/${items.name}`}>
+                        <Link to={`/products/${items._id}`} state={{ item: items }} >
                             <button className="btn btn-dark rounded-none uppercase text-xs tracking-widest py-2 px-2 flex cursor-pointer ">
                                 <div className="flex items-center justify-center flex-grow">
                                     <BsSearch className="me-2" /><span>View</span>

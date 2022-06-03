@@ -16,6 +16,10 @@ import ProductList from "../admin/products";
 import CheckoutConfirmed from "../checkout/CheckoutConfirmed";
 import OrderCheckout from "../checkout/OrderCheckout";
 import ScrollToTop from "../../utils/ScrollToTop";
+import FileChecker from "../file/File";
+import ViewProducts from "../view/ViewProducts";
+import ViewOrders from "../view/ViewOrders";
+import ViewOrderDetailsItem from "../view/ViewOrderDetailsItem";
 
 const App = () => {
     return (
@@ -26,6 +30,10 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/admin" element={<AdminPanel />} />
+                    <Route path="/admin/view/products" element={<ViewProducts />} />
+                    <Route path="/admin/view/orders" element={<ViewOrders />} />
+                    <Route path="/admin/view/products/:id" element={<ProductInfo />} />
+                    <Route path="/admin/view/orders/:id" element={<ViewOrderDetailsItem />} />
                     <Route path="/products" element={<Products />} />
                     <Route path="/orders" element={<Orders />} />
                     <Route path="/login" element={<LoginSignUp />} />
@@ -37,6 +45,7 @@ const App = () => {
                     <Route path="/orders/:id" element={<OrderInfo />} />
                     <Route path="/admin/addproduct" element={<NewProduct />} />
                     <Route path="/admin/products" element={<ProductList />} />
+                    <Route path="/filing" element={<FileChecker />} />
                 </Routes>
             </div>
             <Footer />

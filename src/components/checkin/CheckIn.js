@@ -14,13 +14,26 @@ const Login = () => {
 
   // const dispatch = useDispatch()
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     await axios.post('/auth/login', {
       email: email,
       password: pass
-    }).then((res) => {
+    }).then(async (res) => {
       console.log(res)
+
+      await axios.post('/cart', {
+        uid: res.data.user._id
+      })
+        .then((re) => {
+          console.log(re.data)
+          console.log('Cart Check!')
+        })
+        .catch((er) => {
+          console.log(er.message)
+        })
+
+      localStorage.setItem('auth', JSON.stringify(res.data));
       setEmail("")
       setPass("")
       navigate('/')
@@ -29,6 +42,23 @@ const Login = () => {
       console.log(err)
       alert("Kindly Enter the correct credentials!")
     })
+  }
+
+  const handleGoogleAuth = (e) => {
+    e.preventDefault()
+    // const res = window.open(
+    //   `http://localhost:8080/auth/google`,
+    //   "_self"
+    // )
+    axios.post('/auth/google/')
+    .then(response => {
+        // const token = response.headers;
+        //     setData({
+        //         ...data, token: token, isAuthenticated: true, user: response.data
+        //     })
+        console.log(response)
+    })
+    // console.log(res)
   }
 
   return (
@@ -47,7 +77,7 @@ const Login = () => {
         </p>
         <hr />
         <br />
-        <form className="form-group" onSubmit={handleSubmit}>
+        <form className="form-group">
           <div className="mb-4 text-muted">
             <label className="form-label" htmlFor="email_1" autoComplete="off">
               EMAIL
@@ -115,8 +145,9 @@ const Login = () => {
           </div>
           <div className="mb-4 space-x-4 flex">
             <button
-              type="submit"
+              // type="submit"
               className="btn btn-sm p-2 rounded-none btn-outline-dark flex items-center space-x-2 tracking-widest"
+              onClick={handleSubmit}
             >
               <svg
                 aria-hidden="true"
@@ -136,14 +167,15 @@ const Login = () => {
               <span>LOG IN</span>
             </button>
             <button
-              type="submit"
+              // type="submit"
               className="btn btn-sm p-2 rounded-none btn-outline-dark flex items-center space-x-2 tracking-widest"
             >
               <span>Facebook</span>
             </button>
             <button
-              type="submit"
+              // type="submit"
               className="btn btn-sm p-2 rounded-none btn-outline-dark flex items-center space-x-2 tracking-widest"
+              onClick={handleGoogleAuth}
             >
               <span>Google</span>
             </button>

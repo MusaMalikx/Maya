@@ -1,8 +1,13 @@
 import UserDetails from "../../components/checkout/Details";
 import Layout from "../../components/layout/Article";
 import OrderDetail from "../../components/cart/OrderDetail";
+import { useLocation } from "react-router-dom";
 
 const OrderCheckout = () => {
+
+    const cart = useLocation().state
+    // console.log(cart)
+
     return (
         <div>
             <Layout title="Customer Zone">
@@ -18,17 +23,17 @@ const OrderCheckout = () => {
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-8">
-                                <UserDetails/>
+                                <UserDetails carts={cart} />
                             </div>
                             <div className="col-lg-4">
-                                <OrderDetail/>
+                                <OrderDetail cart={cart} />
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </Layout >
-            
+
         </div>
 
     )

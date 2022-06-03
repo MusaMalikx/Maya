@@ -2,7 +2,7 @@ import React from "react";
 
 function Summary() {
   return (
-    <div className="flex">
+    <div className="flex my-10">
       <div className='bg-[#f8f9fa] pl-5 pt-5 pb-5 pr-5 flex-grow'>
         <div className='h6 mb-4 font-black'>ORDER SUMMARY</div>
         <small>

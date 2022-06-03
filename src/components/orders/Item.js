@@ -10,8 +10,8 @@ function Item({details}) {
         <img src={details.image} height={80} width={80} alt='productimage' />
         <div className="flex flex-col justify-center ml-1">
           <strong>{details.name}</strong>
-          <small className='text-muted' style={{display:"block"}}>Size : {details.size}</small>
-          <small className='text-muted' style={{display:"block"}}>Color : {details.color}</small>
+          {/* <small className='text-muted' style={{display:"block"}}>Size : {details.size}</small>
+          <small className='text-muted' style={{display:"block"}}>Color : {details.color}</small> */}
         </div>
       </div>
       <p className="mt-auto mb-auto">{details.price}</p>

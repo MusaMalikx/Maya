@@ -3,7 +3,9 @@ import Layout from "../../components/layout/Article";
 import UserProfile from "../../components/profile/UserProfile";
 import { useEffect, useState } from "react";
 import axios from "axios";
-const Orders = () => {
+import ViewOrderDetails from "./ViewOrderDetails";
+
+const ViewOrders = () => {
 
     const [auth, setAuth] = useState(JSON.parse(localStorage.getItem('auth')))
     const [orders, setOrders] = useState(null)
@@ -11,7 +13,7 @@ const Orders = () => {
 
     useEffect(() => {
         const getOrders = async () => {
-            await axios.get(`/order/${auth.user._id}`)
+            await axios.get(`/order`)
                 .then((res) => {
                     // console.log(res)
                     setOrders(res.data)
@@ -39,15 +41,15 @@ const Orders = () => {
                     <div className="flex space-x-10 flex-col lg:flex-row">
                         <div className="flex-grow">
                             {
-                                orders && <OrderTable orders={orders} />
+                                orders && <ViewOrderDetails orders={orders} />
                             }
                         </div>
-                        <div className="">
+                        {/* <div className="">
                             <UserProfile
                                 name={"Julie Lescaut"}
                                 address={"Ostrava, Czech Republic"}
                             />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </Layout>
@@ -55,4 +57,4 @@ const Orders = () => {
     )
 }
 
-export default Orders
+export default ViewOrders

@@ -9,9 +9,9 @@ function Smallitem({ details }) {
                         src={details.image}
                         height={80}
                         width={80}
-                        alt='product image'
+                        alt='productimage'
                     />
-                    <div className='flex flex-col justify-center ml-1'>
+                    {/* <div className='flex flex-col justify-center ml-1'>
                         <strong className='tracking-wider'>{details.name}</strong>
                         <small className='text-muted' style={{ display: "block" }}>
                             Size : {details.size}
@@ -19,7 +19,7 @@ function Smallitem({ details }) {
                         <small className='text-muted' style={{ display: "block" }}>
                             Color : {details.color}
                         </small>
-                    </div>
+                    </div> */}
                 </div>
                 <div className='flex justify-between'>
                     <p className='mt-auto mb-auto text-muted'>Price per item</p>

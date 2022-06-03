@@ -9,30 +9,31 @@ import axios from "axios";
 
 const Profile = () => {
 
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
+  const [auth, setAuth] = useState(JSON.parse(localStorage.getItem('auth')))
 
   // const user = useSelector(selectUser)
   // console.log(user)
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const checkUser = async () => {
-      await axios.get('/user/check/authentication').then(async (res) => {
-        console.log(res)
-        setUser(res.data.user)
-      }).catch(function (err) {
-        console.log(err)
-      })
-    }
-    checkUser();
+  //   const checkUser = async () => {
+  //     await axios.get('/user/check/authentication').then(async (res) => {
+  //       console.log(res)
+  //       setUser(res.data.user)
+  //     }).catch(function (err) {
+  //       console.log(err)
+  //     })
+  //   }
+  //   checkUser();
 
-  }, [])
+  // }, [])
 
   return (
     <Layout title="Profile">
       <div className='container-xxl text-sm py-20'>
         {
-          user && user.isAdmin && (
+          auth && auth.user.isAdmin && (
             <div className="flex border-2 border-dashed">
               <div className="mx-auto">
                 <Link to={'/admin'}>

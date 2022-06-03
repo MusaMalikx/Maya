@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const OrderTable = () => {
+const OrderTable = ({ orders }) => {
   return (
     <div>
       <div className="table-responsive ">
@@ -10,32 +10,36 @@ const OrderTable = () => {
               <th className="py-4 text-sm">ORDER #</th>
               <th className="py-4 text-sm">DATE</th>
               <th className="py-4 text-sm">TOTAL</th>
-              <th className="py-4 text-sm">STATUS</th>
+              {/* <th className="py-4 text-sm">STATUS</th> */}
               <th className="py-4 text-sm">ACTION</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th className="py-4 align-middle"># 1735</th>
-              <td className="py-4 align-middle">22/6/2017</td>
-              <td className="py-4 align-middle">$150.00</td>
-              <td className="py-4 align-middle">
+            {
+              orders.map((order, i) => (
+                <tr>
+                  <th className="py-4 align-middle">{'# ' + i + 1}</th>
+                  <td className="py-4 align-middle">{order.createdAt.substring(0, 10)}</td>
+                  <td className="py-4 align-middle">{order.subtotal + ' Rs'}</td>
+                  {/* <td className="py-4 align-middle">
                 <span className="p-2 badge rounded-none bg-[#0dcaf0]">
                   BEING PREPARED
                 </span>
-              </td>
-              <td className="py-4 align-middle">
-                <Link to={`/orders/123`} className="">
-                  <button
-                    type="button"
-                    className="btn btn-outline-dark btn-sm rounded-none"
-                  >
-                    View
-                  </button>
-                </Link>
-              </td>
-            </tr>
-            <tr>
+              </td> */}
+                  <td className="py-4 align-middle">
+                    <Link to={`/orders/${order._id}`} state={order} className="">
+                      <button
+                        type="button"
+                        className="btn btn-outline-dark btn-sm rounded-none"
+                      >
+                        View
+                      </button>
+                    </Link>
+                  </td>
+                </tr>
+              ))
+            }
+            {/* <tr>
               <th className="py-4 align-middle"># 1734</th>
               <td className="py-4 align-middle">7/5/2017</td>
               <td className="py-4 align-middle">$150.00</td>
@@ -88,7 +92,7 @@ const OrderTable = () => {
                   View
                 </button>
               </td>
-            </tr>
+            </tr> */}
           </tbody>
         </table>
       </div>

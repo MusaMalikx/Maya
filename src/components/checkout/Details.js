@@ -1,13 +1,17 @@
 import styles from "./Checkout.module.css"
 import Items from "../orders/Items"
 import { BiChevronRight } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 
-const UserDetails = () => {
+const UserDetails = ({ carts }) => {
 
     const [state1, setState1] = useState(true);
     const [state2, setState2] = useState(false);
+
+    // console.log(carts)
+    const navigate = useNavigate()
 
     const details = [
         {
@@ -41,6 +45,26 @@ const UserDetails = () => {
 
         }
     ]
+
+    const handleOrder = async(e) => {
+        e.preventDefault()
+        
+        setState1(true); 
+        setState2(false);
+
+        await axios.post('/order',{
+            Cartid: carts._id
+        })
+        .then((res) => {
+            console.log(res)
+            navigate('/cart/checkout/confirmed')
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+
+    }
+
     return (
         <div>
             <nav>
@@ -53,9 +77,9 @@ const UserDetails = () => {
             <div className="tab-content py-4" id="nav-tabContent">
 
                 {/* Payment Tab */}
-                <div className={`tab-pane fade ${state1 && 'active show'}`}  id="nav-payment" role="tabpanel" aria-labelledby="nav-contact-tab">
+                <div className={`tab-pane fade ${state1 && 'active show'}`} id="nav-payment" role="tabpanel" aria-labelledby="nav-contact-tab">
                     <div class="accordion accordion-flush" id="accordionPanelsStayOpenExample">
-                        <div class="accordion-item mb-4 accordion-flush">
+                        {/* <div class="accordion-item mb-4 accordion-flush">
                             <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                                 <button class="accordion-button uppercase bg-[#f8f9fa] text-dark tracking-wider text-sm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-optionOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
                                     <strong>Credit Card</strong>
@@ -95,7 +119,7 @@ const UserDetails = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
@@ -108,7 +132,7 @@ const UserDetails = () => {
                                     <div className="row">
                                         <div className="col">
                                             <div className="form-check">
-                                                <input className="form-check-input" name="payment" type="radio" />
+                                                <input className="form-check-input" name="payment" checked={true} type="radio" />
                                                 <label className="form-check-label ">Pay on Delivery</label>
                                             </div>
                                         </div>
@@ -119,7 +143,7 @@ const UserDetails = () => {
                     </div>
                     <div className="my-5 text-right">
 
-                        <button type="submit" onClick={() => {setState1(false); setState2(true);} } className="btn btn-sm px-4 py-2 my-2 rounded-none btn-outline-dark flex items-center space-x-2 tracking-widest mx-auto">
+                        <button type="submit" onClick={() => { setState1(false); setState2(true); }} className="btn btn-sm px-4 py-2 my-2 rounded-none btn-outline-dark flex items-center space-x-2 tracking-widest mx-auto">
                             <span>Continue to Order Review</span>
                             <BiChevronRight style={{ display: "inline" }} className="pr-1 text-xl" />
                         </button>
@@ -128,15 +152,15 @@ const UserDetails = () => {
 
                 {/* Order Review Tab */}
                 <div className={`tab-pane fade ${state2 && 'active show'}`} id="nav-review" role="tabpanel" aria-labelledby="nav-contact-tab">
-                    <Items details={details} />
-                    <Link to={'/cart/checkout/confirmed'}>
+                    <Items details={carts} />
+                    {/* <Link to={'/cart/checkout/confirmed'}> */}
                         <div className="my-5 text-right">
-                            <button type="submit" onClick={() => {setState1(true); setState2(false);} } className="btn btn-sm px-4 py-2 my-2 rounded-none btn-outline-dark flex items-center space-x-2 tracking-widest mx-auto">
+                            <button onClick={handleOrder} type="submit" className="btn btn-sm px-4 py-2 my-2 rounded-none btn-outline-dark flex items-center space-x-2 tracking-widest mx-auto">
                                 <span>Place an Order</span>
                                 <BiChevronRight style={{ display: "inline" }} className="pr-1 text-xl" />
                             </button>
                         </div>
-                    </Link>
+                    {/* </Link> */}
                 </div>
             </div>
         </div>

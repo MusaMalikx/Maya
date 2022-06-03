@@ -10,23 +10,23 @@ const LoginSignUp = () => {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
-    useEffect(() => {
-        const checkUser = async () => {
-            await axios.get('/user/check/authentication').then(function (res) {
-                // console.log(res)
-                if (res.data.bool === true) {
-                    navigate("/")
-                }
-                else {
-                    setLoading(false)
-                }
-            }).catch(function (err) {
-                console.log(err)
-            })
-        }
+    // useEffect(() => {
+    //     const checkUser = async () => {
+    //         await axios.get('/user/check/authentication').then(function (res) {
+    //             // console.log(res)
+    //             if (res.data.bool === true) {
+    //                 navigate("/")
+    //             }
+    //             else {
+    //                 setLoading(false)
+    //             }
+    //         }).catch(function (err) {
+    //             console.log(err)
+    //         })
+    //     }
 
-        checkUser();
-    }, [navigate])
+    //     checkUser();
+    // }, [navigate])
 
     return (
         <div>

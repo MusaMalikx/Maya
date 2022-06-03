@@ -10,10 +10,28 @@ import { MdArrowLeft, MdArrowRight } from "react-icons/md"
 import { RiSkipForwardMiniFill, RiSkipBackMiniFill } from "react-icons/ri"
 import Layout from '../../components/layout/Article'
 import SearchBar from "../../components/search/SearchBar";
-import List from "../../components/product/ProductList"
+// import List from "../../components/product/ProductList"
+import { useEffect, useState } from "react";
+import axios from "axios";
 // import RecentSearches from "../search/RecentSearches"
 
 const Products = () => {
+
+    const [auth, setAuth] = useState(JSON.parse(localStorage.getItem('auth')))
+    const [List, setList] = useState(null)
+
+    useEffect(() => {
+        const getProducts = async () => {
+            await axios.get('/products/')
+                .then((res) => {
+                    // console.log(res.data)
+                    setList(res.data)
+                })
+                .catch((err) => console.log(err.message))
+        }
+        getProducts();
+    }, [])
+
     return (
         <Layout title="Products">
             <div className="container-xxl">
@@ -21,69 +39,72 @@ const Products = () => {
                     Products
                 </h1>
                 <SearchBar />
-                <div className="py-20 space-y-20">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center">
-                        {List.map((item, i) => (
-                            <ProductItem key={i} items={item} />
-                        ))}
-                    </div>
-                    <div
-                        className="btn-toolbar hidden lg:flex items-center justify-center mt-10"
-                        role="toolbar"
-                        aria-label="Toolbar with button groups"
-                    >
-                        <div className="btn-group me-2" role="group" aria-label="First group">
-                            <button
-                                type="button"
-                                className="btn bg-[#f0f0f0] border-[1px] rounded-none border-gray-300"
-                            >
-                                <RiSkipBackMiniFill className="text-2xl" />
-                            </button>
-                            <button
-                                type="button"
-                                className="btn bg-[#f0f0f0] border-[1px] rounded-none border-gray-300"
-                            >
-                                <MdArrowLeft className="text-2xl" />
-                            </button>
-                            <button
-                                type="button"
-                                className="btn bg-[#139ff0] text-white border-[1px] rounded-none border-gray-300"
-                            >
-                                1
-                            </button>
-                            <button
-                                type="button"
-                                className="btn bg-[#f0f0f0] border-[1px] rounded-none border-gray-300"
-                            >
-                                2
-                            </button>
-                            <button
-                                type="button"
-                                className="btn bg-[#f0f0f0] border-[1px] rounded-none border-gray-300"
-                            >
-                                3
-                            </button>
-                            <button
-                                type="button"
-                                className="btn bg-[#f0f0f0] border-[1px] rounded-none border-gray-300"
-                            >
-                                4
-                            </button>
-                            <button
-                                type="button"
-                                className="btn bg-[#f0f0f0] border-[1px] rounded-none border-gray-300"
-                            >
-                                <MdArrowRight className="text-2xl" />
-                            </button>
-                            <button
-                                type="button"
-                                className="btn bg-[#f0f0f0] border-[1px] rounded-none border-gray-300"
-                            >
-                                <RiSkipForwardMiniFill className="text-2xl" />
-                            </button>
+                {
+                    List &&
+                    <div className="py-20 space-y-20">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center">
+                            {List.map((item, i) => (
+                                <ProductItem key={i} items={item} />
+                            ))}
+                        </div>
+                        <div
+                            className="btn-toolbar hidden lg:flex items-center justify-center mt-10"
+                            role="toolbar"
+                            aria-label="Toolbar with button groups"
+                        >
+                            <div className="btn-group me-2" role="group" aria-label="First group">
+                                <button
+                                    type="button"
+                                    className="btn bg-[#f0f0f0] border-[1px] rounded-none border-gray-300"
+                                >
+                                    <RiSkipBackMiniFill className="text-2xl" />
+                                </button>
+                                <button
+                                    type="button"
+                                    className="btn bg-[#f0f0f0] border-[1px] rounded-none border-gray-300"
+                                >
+                                    <MdArrowLeft className="text-2xl" />
+                                </button>
+                                <button
+                                    type="button"
+                                    className="btn bg-[#139ff0] text-white border-[1px] rounded-none border-gray-300"
+                                >
+                                    1
+                                </button>
+                                <button
+                                    type="button"
+                                    className="btn bg-[#f0f0f0] border-[1px] rounded-none border-gray-300"
+                                >
+                                    2
+                                </button>
+                                <button
+                                    type="button"
+                                    className="btn bg-[#f0f0f0] border-[1px] rounded-none border-gray-300"
+                                >
+                                    3
+                                </button>
+                                <button
+                                    type="button"
+                                    className="btn bg-[#f0f0f0] border-[1px] rounded-none border-gray-300"
+                                >
+                                    4
+                                </button>
+                                <button
+                                    type="button"
+                                    className="btn bg-[#f0f0f0] border-[1px] rounded-none border-gray-300"
+                                >
+                                    <MdArrowRight className="text-2xl" />
+                                </button>
+                                <button
+                                    type="button"
+                                    className="btn bg-[#f0f0f0] border-[1px] rounded-none border-gray-300"
+                                >
+                                    <RiSkipForwardMiniFill className="text-2xl" />
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
             </div>
         </Layout>
     );

@@ -11,7 +11,8 @@ const Navbar = () => {
 
     const [y, setY] = useState(null);
     const navigate = useNavigate()
-    const [bool, setBool] = useState(false)
+    const [bool, setBool] = useState(true)
+    const [auth, setAuth] = useState(JSON.parse(localStorage.getItem('auth')))
     // const [loading, setLoading] = useState(false)
     // const dispatch = useDispatch()
     // const bool = useSelector(selectUser)
@@ -26,34 +27,37 @@ const Navbar = () => {
 
         };
 
-        const checkUser = async () => {
-            await axios.get('/user/check/authentication').then(function (res) {
-                setBool(res.data.bool)
-                console.log(res.data.bool)
-            }).catch(function (err) {
-                console.log(err)
-            })
-        }
+        // const checkUser = async () => {
+        //     await axios.get('/user/check/authentication').then(function (res) {
+        //         setBool(res.data.bool)
+        //         console.log(res.data.bool)
+        //     }).catch(function (err) {
+        //         console.log(err)
+        //     })
+        // }
 
-        checkUser();
+        // checkUser();
+        setAuth(JSON.parse(localStorage.getItem('auth')))
 
         window.addEventListener("scroll", handleNavigation);
 
         return () => {
             window.removeEventListener("scroll", handleNavigation);
         };
-    }, []);
+    });
 
     const handleLogout = async (e) => {
         e.preventDefault();
 
-        await axios.get('/user/destroy/authentication').then(function (res) {
-            console.log(res)
-        })
+        // await axios.get('/user/destroy/authentication').then(function (res) {
+        //     console.log(res)
+        // })
         // setSession(false);
         // setLoading(true)
-        setBool(false)
+        // setBool(false)
         // dispatch(setUser(false))
+        localStorage.setItem('auth', JSON.stringify(null));
+        setAuth(JSON.parse(localStorage.getItem('auth')))
         navigate('/login')
 
     }
@@ -84,7 +88,7 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse lg:flex lg:justify-end" id="navbarSupportedContent">
                     <div className="navbar-nav mb-2 mb-lg-0 flex items-center">
                         {
-                            bool ?
+                            auth ?
                                 <>
                                     <li>
                                         <div className="flex text-2xl space-x-7 my-3 lg:mr-6">
@@ -102,7 +106,7 @@ const Navbar = () => {
                                         </Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link to={'/orders'}>
+                                        <Link to={`/orders`}>
                                             <p className="nav-link tracking-widest cursor-pointer" aria-current="page" href="/products">Orders</p>
                                         </Link>
                                     </li>

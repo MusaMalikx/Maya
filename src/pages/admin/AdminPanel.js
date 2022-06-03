@@ -98,14 +98,24 @@ const AdminPanel = () => {
                 </div>
                 <Link to={'/admin/addproduct'}>
                     <button
-                        type="submit"
                         className="btn btn-sm px-4 py-2 rounded-none btn-outline-dark flex items-center space-x-2 tracking-widest mx-auto mb-14"
                     >
                         <span>Add Product</span>
                     </button>
                 </Link>
+
+                <div className="flex">
+                    <button className="btn btn-sm px-4 py-2 rounded-sm btn-dark flex items-center space-x-2 tracking-widest mx-auto mb-14">View Users</button>
+                    <Link to={'/admin/view/products'}>
+                        <button className="btn btn-sm px-4 py-2 rounded-sm btn-dark flex items-center space-x-2 tracking-widest mx-auto mb-14">View Products</button>
+                    </Link>
+                    <Link to={'/admin/view/orders'}>
+                    <button className="btn btn-sm px-4 py-2 rounded-sm btn-dark flex items-center space-x-2 tracking-widest mx-auto mb-14">View Orders</button>
+                    </Link>
+                </div>
+
                 <StatsBlock stats={stats} />
-                <div className={`row`}>
+                {/* <div className={`row`}>
                     <div className={`col-12 col-lg-4`}>
                         <RevenueBlock revenue={data} />
                     </div>
@@ -115,7 +125,7 @@ const AdminPanel = () => {
                     <div className={`col-12`}>
                         <TransactionTable trans={transactions} />
                     </div>
-                </div>
+                </div> */}
             </div>
         </Layout>
     )

@@ -4,13 +4,32 @@ import OrderDetail from "../../components/cart/OrderDetail"
 import CartProduct from "../../components/cart/CartProduct"
 import CartProductList from "../../components/cart/CartProductList"
 import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 const Cart = () => {
+
+    const [auth, setAuth] = useState(JSON.parse(localStorage.getItem('auth')))
+    const [carts, setCarts] = useState(null)
+
+    useEffect(() => {
+        const getCarts = async () => {
+            await axios.get(`/cart/${auth.user._id}`)
+                .then((res) => {
+                    console.log(res)
+                    setCarts(res.data)
+                })
+                .catch((er) => {
+                    console.log(er.message)
+                })
+        }
+        getCarts();
+    }, [auth.user._id])
 
     return (
         <Layout title="Shopping Cart">
 
-            <div>
+            <div className="container-xxl">
                 <div className="py-20">
 
                     <div className="pb-5 text-center tracking-widest">
@@ -21,7 +40,7 @@ const Cart = () => {
                     </div>
                 </div>
 
-                <div className="container-xxl text-sm">
+                <div className="text-sm">
                     <div className="row mb-5">
 
                         <div className="col-lg-8 ">
@@ -41,9 +60,10 @@ const Cart = () => {
                             </div>
                             {/* Products rows*/}
                             {
-                                CartProductList.map((c, i) => (
+                                carts && carts.products.map((cart, i) => (
                                     <>
-                                        <CartProduct pic={c.pic} name={c.name} size={c.size} color={c.color} price={c.price} quantity={c.quantity} total={c.total} />
+                                        {/* <CartProduct pic={c.pic} name={c.name} size={c.size} color={c.color} price={c.price} quantity={c.quantity} total={c.total} /> */}
+                                        <CartProduct cart={cart} />
                                     </>
                                 ))
                             }
@@ -58,10 +78,10 @@ const Cart = () => {
                                         </p>
                                     </div>
                                 </Link>
-                                <Link to={'/cart/checkout'}>
-                                    <button className="btn btn-sm px-4 py-2 my-2 rounded-none btn-outline-dark flex items-center space-x-2 tracking-widest mx-auto">
+                                <Link to={'/cart/checkout'} state={carts}>
+                                    <p className="btn btn-sm px-4 py-2 my-2 rounded-none btn-outline-dark flex items-center space-x-2 tracking-widest mx-auto">
                                         Proceed to Checkout
-                                    </button>
+                                    </p>
                                     {/* <button className={`btn btn-dark ${styles.btnproced}`}>Proceed to Checkout</button> */}
                                 </Link>
                             </div>
@@ -69,7 +89,10 @@ const Cart = () => {
 
                         {/* Order */}
                         <div className="col-lg-4">
-                            <OrderDetail />
+                            {
+                                carts &&
+                                <OrderDetail cart={carts} />
+                            }
                         </div>
 
                     </div>

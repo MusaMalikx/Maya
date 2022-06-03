@@ -12,9 +12,10 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 
 
-const OrderInfo = () => {
+const ViewOrderDetailsItem = () => {
 
   const order = useLocation().state
+//   console.log(order)
 
   // const [auth, setAuth] = useState(JSON.parse(localStorage.getItem('auth')))
   // const [orders, setOrders] = useState(null)
@@ -75,9 +76,9 @@ const OrderInfo = () => {
           {/* <div className={`${styles.heroheading} h1`}>
             CUSTOMER - ORDER DETAIL
           </div> */}
-          <h1 className="uppercase tracking-[0.8rem] py-10 text-center text-4xl lg:text-6xl">CUSTOMER - ORDER DETAIL</h1>
+          <h1 className="uppercase tracking-[0.8rem] py-10 text-center text-4xl lg:text-6xl">ORDER DETAIL</h1>
           <div className="text-center text-muted">
-            Order #1735 was placed on 22/06/2013 and is currently Being
+            Order was placed on {order.createdAt.substring(0, 10)} and is currently Being
             prepared.
           </div>
           <small className="text-center text-muted text-xs">
@@ -88,7 +89,7 @@ const OrderInfo = () => {
         <div className='flex flex-col lg:flex-row'>
           <div className="flex-grow space-y-10">
             <Items details={order} />
-            <Summary />
+            {/* <Summary /> */}
           </div>
           {/* <div className="mx-5">
             <UserProfile
@@ -102,4 +103,4 @@ const OrderInfo = () => {
   );
 }
 
-export default OrderInfo;
+export default ViewOrderDetailsItem;
