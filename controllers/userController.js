@@ -47,7 +47,7 @@ module.exports = {
         try {
             const user = await userModel.findById({ _id: req.params.id })
             // await item.save();
-            console.log(user)
+            // console.log(user)
             res.status(201).json(user.picture);
         } catch (error) {
             next(error)
@@ -94,6 +94,23 @@ module.exports = {
         });
     },
 
+    showAll: async (req, res, next) => {
+
+        // console.log('Show All')
+        const users = await UserModel.find()
+        try {
+
+            if (users) {
+                res.status(200).json(users)
+            }
+            else if (!users) {
+                res.status(201).json('No User Found!')
+            }
+        }
+        catch (err) {
+            next(err)
+        }
+    },
 
     //  getAlluser
 

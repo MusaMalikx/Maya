@@ -41,6 +41,6 @@ router.get('/:id', getProdcut)
 
 router.get('/', getAllProducts)
 
-router.get('/search/products', searchProducts)
+router.get('/search/:category', searchProducts)
 
 module.exports = router;

@@ -78,6 +78,8 @@ const AddToCart = async (req, res, next) => {
 };
 
 const RemoveFromCart = async (req, res, next) => {
+
+  // console.log(req.body)
   const productID = req.body.productID;
 
   try {

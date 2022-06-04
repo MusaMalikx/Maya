@@ -22,31 +22,31 @@ const { uploadImage, image } = require('../controllers/userController.js');
 // const upload = multer({ storage: storage, limits: { fileSize: 1024 * 1024 * 5 } })
 
 
-router.put('/update/profile/image/:id', uploadImage)
+router.put('/update/profile/image/:id', verifyToken, uploadImage)
 
-router.get('/profile/image/:id', image)
+router.get('/profile/image/:id', verifyToken, image)
 
 /*
  * GET ......Template function already made .........
  */
-router.get('/', verifyUser, userController.list);
+// router.get('/', verifyUser, userController.list);
 
-router.get('/profile/image/:id', userController.image)
+// router.get('/profile/image/:id', userController.image)
 
 /*
  * GET   .........Template function..........
  */
 router.get('/:id', userController.show);
 
-router.get('/', userController.show);
+router.get('/', userController.showAll);
 
 
 /*
  * PUT  / Updates user profile for profile page
  */
-router.put('/savechanges/:id', userController.update);
+router.put('/savechanges/:id', verifyToken, userController.update);
 
-router.put('/changepassword/:id', userController.changepassword);
+router.put('/changepassword/:id', verifyToken, userController.changepassword);
 
 //AUTH CHECK VERIFICATION
 router.get("/check/authentication", isAuth);
