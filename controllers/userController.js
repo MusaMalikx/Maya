@@ -2,6 +2,7 @@ var UserModel = require('../models/userModel.js');
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
 const userModel = require('../models/userModel')
+const nodemailer = require('nodemailer')
 /**
  * userController.js
  *
@@ -195,6 +196,103 @@ module.exports = {
         else {
             res.status(401).json("Incorrect password!");
         }
+    },
+
+    forgotpassword: async (req,res,next) => {
+        const {email} = req.body.email;
+
+        const user = await UserModel.findOne({email: req.body.email});
+
+        if(!user) {
+            return res.status(401).json("Email not found!!");
+        }
+
+        const secret = process.env.JWT_RESET_KEY ;
+
+        const payload = {
+            // email: user.email,
+            _id: user.id
+        }
+
+
+        const token = jwt.sign(payload , secret , {expiresIn: '15m'})
+        const link = `http://localhost:3000/resetpass/${token}`;
+
+
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: process.env.GOOGLE_APP_GMAIL,
+              pass: process.env.GOOGLE_APP_PASS  //this is the app pass not the orignal password
+            }
+          });
+
+        //mail structure
+          var mailOptions = {
+            from: 'maya.noreply.app@gmail.com',
+            to: req.body.email,
+            subject: 'Reset Password Link for Maya',
+            text: 'To Change Password Click this link :- ' + link,
+          };
+
+
+          user.updateOne({resetLink: token} , (err ,sucsess) => {
+              if(err) {
+                  return res.status(400).json("Reset password Link error!");
+              } else {
+                  ///-----------Sends mail to the user------
+                    transporter.sendMail(mailOptions, function(error, info){
+                        if (error) {
+                        console.log(error);
+                        return res.send(error);
+                        } else {
+                        console.log('Email sent: ' + info.response);
+                        return res.send(info.response);
+                        }
+                    });
+              }
+          });
+
+          
+    },
+
+    resetpassword: async (req, res ,next) => {
+        const resetLink = req.params.token;
+        const  newPass = req.body.newpassword;
+        if(resetLink) {
+            jwt.verify(resetLink , process.env.JWT_RESET_KEY , async (err,decodedData) => {
+                if(err) {
+                    return res.status(401).json("Incorrect token or expired");
+                }
+                else {
+                    const user = await UserModel.findOne({resetLink: resetLink});
+
+                    if(!user) {
+                        return res.status(401).json("User not found or Reset Link expired!!");
+                    }
+                    try{
+                        //updates password into hash then stores it in db
+                        const newpassword = await bcrypt.hash(newPass, 10);
+
+                        const updatedUser = await UserModel.findByIdAndUpdate(user.id , {
+                            password: newpassword,
+                            resetLink: ""
+                        } , {
+                            new: true
+                        });
+        
+                        return res.status(200).json("Password Updated");
+        
+                    } catch(err) {
+                        return res.status(500).json("here erro");
+                    }
+                }
+            })
+
+        } else {
+            return res.status(401).json({error: "Authentication error!"});
+        }
+
     }
 
 };

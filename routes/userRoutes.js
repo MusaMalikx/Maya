@@ -48,6 +48,12 @@ router.put('/savechanges/:id', verifyToken, userController.update);
 
 router.put('/changepassword/:id', verifyToken, userController.changepassword);
 
+router.post("/forgot/password" , userController.forgotpassword );
+
+//router.get("/reset/password/:id"  , userController.resetpassword);
+
+router.post("/reset/password/:token"  , userController.resetpassword);
+
 //AUTH CHECK VERIFICATION
 router.get("/check/authentication", isAuth);
 

@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Schema   = mongoose.Schema;
+var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
 	facebookId: {   //To store facebook id if logge in through Facebook
@@ -11,24 +11,24 @@ var userSchema = new Schema({
 		//unique: true,
 		default: ""
 	},
-	email : {
+	email: {
 		type: String,
 		//unique: true,  //we can not set this unique because if 2 people login with google id this needs to be kept empty using defalut so unique will not work
 		default: ""
 	},
-	password : {
+	password: {
 		type: String,
 		default: ""
 	},
 	isAdmin: {
-        type: Boolean,
-        default: false
-    },
+		type: Boolean,
+		default: false
+	},
 	name: {
-        type: String,
-        required: true
-		
-    },
+		type: String,
+		required: true
+
+	},
 	lastname: {
 		type: String,
 		default: ""
@@ -55,6 +55,10 @@ var userSchema = new Schema({
 	},
 	picture: {
 		type: String,
+		default: ""
+	},
+	resetLink: {
+		data: String,
 		default: ""
 	}
 }, { timestamps: true });

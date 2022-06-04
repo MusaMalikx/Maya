@@ -119,7 +119,7 @@ const RemoveFromCart = async (req, res, next) => {
 
 const getCart = async (req, res, next) => {
   try {
-    const cart = await Cart.findOne({ user_id: req.params.uid });
+    const cart = await Cart.findOne({ uid: req.params.uid });
     res.status(200).json(cart);
   } catch (err) {
     next(err);
