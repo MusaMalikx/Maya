@@ -121,7 +121,7 @@ const InfoDetails = ({ item }) => {
                                     Items
                                     <span className=""> (required)</span>
                                 </h6>
-                                <input style={{ maxWidth: "5rem", textAlign: "center" }} type="number" name="quantity" className="form-control" onChange={(e) => setQuant(e.target.value)} />
+                                <input style={{ maxWidth: "5rem", textAlign: "center" }} type="number" min={0} name="quantity" className="form-control" onChange={(e) => setQuant(e.target.value)} />
                             </div>
                         </div>
 

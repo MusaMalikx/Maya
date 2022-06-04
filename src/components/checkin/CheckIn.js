@@ -10,6 +10,7 @@ const Login = () => {
   const [pass, setPass] = useState("")
   const [email, setEmail] = useState("")
   const [hid, setHid] = useState(false)
+  const [vemail, setVEmail] = useState("")
   // console.log(pass, email)
 
   // const dispatch = useDispatch()
@@ -53,6 +54,29 @@ const Login = () => {
     console.log(res)
   }
 
+  const handleFacebookAuth = (e) => {
+    e.preventDefault()
+    const res = window.open(
+      `http://localhost:8080/auth/facebook`,
+      "_self"
+    )
+    console.log(res)
+  }
+
+  const handleVerify = (e) => {
+    e.preventDefault();
+    axios.post('/user/forgot/password', {
+      email: vemail
+    })
+      .then((res) => {
+        console.log(res)
+        alert("Email Verification Sent!")
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   return (
     <div>
       <div className="lg:w-[450px] xl:w-[600px]">
@@ -90,7 +114,7 @@ const Login = () => {
           </div>
           <div
             data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
+            data-bs-target="#Modal"
             className=" text-sky-600 hover:underline hover:underline-offset-1 cursor-pointer my-3 flex justify-end"
           >
             <p>forgot password ?</p>
@@ -98,21 +122,22 @@ const Login = () => {
 
           <div
             className="modal fade"
-            id="exampleModal"
+            id="Modal"
             tabIndex="-1"
-            aria-labelledby="exampleModalLabel"
+            aria-labelledby="ModalLabel"
             aria-hidden="true"
           >
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header">
-                  <h5 className="modal-title" id="exampleModalLabel">
+                  <h5 className="modal-title" id="ModalLabel">
                     Forgot Password
                   </h5>
                   <button
                     className="btn-close"
                     data-bs-dismiss="modal"
                     aria-label="Close"
+                    onClick={(e) => e.preventDefault()}
                   ></button>
                 </div>
                 <div className="modal-body">
@@ -120,7 +145,7 @@ const Login = () => {
                     <label className="form-label" htmlFor="email">
                       EMAIL
                     </label>
-                    <input type="text" id="email" className="form-control" autoComplete="off" />
+                    <input type="text" id="email" className="form-control" autoComplete="off" onChange={(e) => setVEmail(e.target.value)} />
                   </div>
                 </div>
                 <div className="modal-footer">
@@ -128,6 +153,7 @@ const Login = () => {
                     className="btn btn-primary"
                     data-bs-dismiss="modal"
                     aria-label="Close"
+                    onClick={handleVerify}
                   >
                     Send Verification
                   </button>
@@ -161,6 +187,7 @@ const Login = () => {
             <button
               // type="submit"
               className="btn btn-sm p-2 rounded-none btn-outline-dark flex items-center space-x-2 tracking-widest"
+              onClick={handleFacebookAuth}
             >
               <span>Facebook</span>
             </button>

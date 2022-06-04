@@ -25,6 +25,24 @@ const SignUp = () => {
     })
   }
 
+  const handleGoogleAuth = (e) => {
+    e.preventDefault()
+    const res = window.open(
+      `http://localhost:8080/auth/google`,
+      "_self"
+    )
+    console.log(res)
+  }
+
+  const handleFacebookAuth = (e) => {
+    e.preventDefault()
+    const res = window.open(
+      `http://localhost:8080/auth/facebook`,
+      "_self"
+    )
+    console.log(res)
+  }
+
   return (
     <div className="">
       <div className="lg:w-[450px] xl:w-[600px]">
@@ -86,13 +104,15 @@ const SignUp = () => {
               <span>Sign UP</span>
             </button>
             <button
-              type="submit"
+              // type="submit"
+              onClick={handleFacebookAuth}
               className="btn btn-sm p-2 rounded-none btn-outline-dark flex items-center space-x-2 tracking-widest"
             >
               <span>Facebook</span>
             </button>
             <button
-              type="submit"
+              // type="submit"
+              onClick={handleGoogleAuth}
               className="btn btn-sm p-2 rounded-none btn-outline-dark flex items-center space-x-2 tracking-widest"
             >
               <span>Google</span>

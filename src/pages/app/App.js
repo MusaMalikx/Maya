@@ -21,6 +21,7 @@ import ViewProducts from "../view/ViewProducts";
 import ViewOrders from "../view/ViewOrders";
 import ViewOrderDetailsItem from "../view/ViewOrderDetailsItem";
 import ViewUsers from "../view/ViewUsers";
+import ResetPassword from "../reset/ResetPassword";
 
 const App = () => {
     return (
@@ -48,6 +49,7 @@ const App = () => {
                     <Route path="/admin/addproduct" element={<NewProduct />} />
                     <Route path="/admin/products" element={<ProductList />} />
                     <Route path="/filing" element={<FileChecker />} />
+                    <Route path="/resetpass/:id" element={<ResetPassword />} />
                 </Routes>
             </div>
             <Footer />
