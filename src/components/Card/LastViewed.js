@@ -1,23 +1,41 @@
 import LastViewedItem from "./LastViewedItem"
-import List from "./LastViewedList"
+// import List from "./LastViewedList"
 // import Image from "next/image";
 import pic1 from "../../assets/banner/circle-slider-1.webp"
 import pic2 from "../../assets/banner/circle-slider-2.webp"
 import pic3 from "../../assets/banner/circle-slider-3.webp"
 // Import Swiper styles
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination, Controller, Thumbs } from 'swiper';
 // import 'swiper/swiper-bundle.css';
 // import './styles.css';
 import "swiper/css/bundle";
+import axios from "axios";
+import ProductItem from "../product/ProductItem";
 
 SwiperCore.use([Navigation, Pagination, Controller, Thumbs]);
 
 // const [controlledSwiper, setControlledSwiper] = useState(null);
 
 
+
 const LastViewed = () => {
+
+    const [List, setList] = useState(null)
+    
+    useEffect(() => {
+        const getProducts = async () => {
+            await axios.get('/products/')
+                .then((res) => {
+                    // console.log(res.data)
+                    setList(res.data)
+                })
+                .catch((err) => console.log(err.message))
+        }
+        getProducts();
+    }, [])
+
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     var settings = {
         dots: true,
@@ -57,7 +75,7 @@ const LastViewed = () => {
     return (
         <div className="container-xxl my-20">
             <div className="flex flex-col justify-center items-center space-y-5">
-                <h1 className="uppercase tracking-[0.1rem] text-2xl lg:text-4xl font-semibold whitespace-nowrap">Last viewed products</h1>
+                <h1 className="uppercase tracking-[0.1rem] text-2xl lg:text-4xl font-semibold whitespace-nowrap">View Products</h1>
                 <p className=" text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </div>
             <div className="my-20 mx-auto">
@@ -89,9 +107,9 @@ const LastViewed = () => {
                     }}
                 >
                     {
-                        List.map((l, i) => (
+                       List && List.map((l, i) => (
                             <SwiperSlide key={i}>
-                                <LastViewedItem items={l} />
+                                <ProductItem items={l} />
                             </SwiperSlide>
                         ))
                     }

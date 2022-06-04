@@ -21,6 +21,7 @@ const UserProfile = (props) => {
   // const [dat, setDat] = useState();
   // const [user, setUser] = useState(null)
   const [auth, setAuth] = useState(JSON.parse(localStorage.getItem('auth')))
+  // console.log(auth)
 
   // console.log(item)
 
@@ -53,7 +54,11 @@ const UserProfile = (props) => {
   useEffect(() => {
     const getImage = async () => {
       await axios
-        .get(`user/profile/image/${auth.user._id}`) //.getItems();
+        .get(`user/profile/image/${auth.user._id}`, {
+          headers: {
+            token: 'Bearer ' + auth.token
+          }
+        }) //.getItems();
         .then((res) => {
           setItem({ image: res.data });
           // console.log(res);
@@ -72,9 +77,14 @@ const UserProfile = (props) => {
     await axios
       .put(`/user/update/profile/image/${auth.user._id}`, {
         image: item.image
+      }, {
+        headers: {
+          token: 'Bearer ' + auth.token
+        }
       }) //api.createItem(item);
       .then((res) => {
         console.log(res)
+        alert(res.data)
         // setItems([...items, res.data]);
       })
       .catch((error) => {

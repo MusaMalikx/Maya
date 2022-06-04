@@ -5,18 +5,38 @@ import pic1 from "../../assets/banner/circle-slider-1.webp";
 import pic2 from "../../assets/banner/circle-slider-2.webp";
 import pic3 from "../../assets/banner/circle-slider-3.webp";
 // Import Swiper styles
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination, Controller, Thumbs } from "swiper";
 // import 'swiper/swiper-bundle.css';
 // import './styles.css';
 import "swiper/css/bundle";
+import axios from "axios";
+import ProductItem from "../product/ProductItem";
 
 SwiperCore.use([Navigation, Pagination, Controller, Thumbs]);
 
 // const [controlledSwiper, setControlledSwiper] = useState(null);
 
-const Suggestion = () => {
+const Suggestion = ({ category }) => {
+
+  const [products, setProducts] = useState(null)
+  // console.log(category)
+
+  useEffect(() => {
+    const getSuggestions = async () => {
+      axios.get(`/products/search/${category}`)
+        .then((res) => {
+          // console.log(res)
+          setProducts(res.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+    getSuggestions()
+  }, [])
+
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   var settings = {
     dots: true,
@@ -93,9 +113,9 @@ const Suggestion = () => {
             },
           }}
         >
-          {List.map((l, i) => (
+          {products && products.map((l, i) => (
             <SwiperSlide key={i}>
-              <LastViewedItem items={l} />
+              <ProductItem items={l} />
             </SwiperSlide>
           ))}
         </Swiper>

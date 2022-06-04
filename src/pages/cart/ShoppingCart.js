@@ -63,7 +63,7 @@ const Cart = () => {
                                 carts && carts.products.map((cart, i) => (
                                     <>
                                         {/* <CartProduct pic={c.pic} name={c.name} size={c.size} color={c.color} price={c.price} quantity={c.quantity} total={c.total} /> */}
-                                        <CartProduct cart={cart} />
+                                        <CartProduct cart={cart} cart_id={carts._id} />
                                     </>
                                 ))
                             }

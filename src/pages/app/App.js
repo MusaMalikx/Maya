@@ -20,6 +20,7 @@ import FileChecker from "../file/File";
 import ViewProducts from "../view/ViewProducts";
 import ViewOrders from "../view/ViewOrders";
 import ViewOrderDetailsItem from "../view/ViewOrderDetailsItem";
+import ViewUsers from "../view/ViewUsers";
 
 const App = () => {
     return (
@@ -32,6 +33,7 @@ const App = () => {
                     <Route path="/admin" element={<AdminPanel />} />
                     <Route path="/admin/view/products" element={<ViewProducts />} />
                     <Route path="/admin/view/orders" element={<ViewOrders />} />
+                    <Route path="/admin/view/users" element={<ViewUsers />} />
                     <Route path="/admin/view/products/:id" element={<ProductInfo />} />
                     <Route path="/admin/view/orders/:id" element={<ViewOrderDetailsItem />} />
                     <Route path="/products" element={<Products />} />

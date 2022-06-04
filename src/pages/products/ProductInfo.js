@@ -39,7 +39,7 @@ const ProductInfo = () => {
                     <div className="container mb-5">
                         <div className="text-center">
                             {/* <h6 className="text-uppercase">You might also like</h6> */}
-                            <Suggestion />
+                            <Suggestion category={item.category} />
                         </div>
                     </div>
 

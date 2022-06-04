@@ -43,6 +43,10 @@ function ChangePassword() {
       await axios.put(`/user/changepassword/${auth.user._id}`, {
         oldpassword: oldPass,
         newpassword: newPass
+      }, {
+        headers: {
+          token: 'Bearer ' + auth.token
+        }
       }).then((res) => {
         console.log(res)
         setOldPassword("")

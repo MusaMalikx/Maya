@@ -105,12 +105,14 @@ const AdminPanel = () => {
                 </Link>
 
                 <div className="flex">
-                    <button className="btn btn-sm px-4 py-2 rounded-sm btn-dark flex items-center space-x-2 tracking-widest mx-auto mb-14">View Users</button>
+                    <Link to={'/admin/view/users'}>
+                        <button className="btn btn-sm px-4 py-2 rounded-sm btn-dark flex items-center space-x-2 tracking-widest mx-auto mb-14">View Users</button>
+                    </Link>
                     <Link to={'/admin/view/products'}>
                         <button className="btn btn-sm px-4 py-2 rounded-sm btn-dark flex items-center space-x-2 tracking-widest mx-auto mb-14">View Products</button>
                     </Link>
                     <Link to={'/admin/view/orders'}>
-                    <button className="btn btn-sm px-4 py-2 rounded-sm btn-dark flex items-center space-x-2 tracking-widest mx-auto mb-14">View Orders</button>
+                        <button className="btn btn-sm px-4 py-2 rounded-sm btn-dark flex items-center space-x-2 tracking-widest mx-auto mb-14">View Orders</button>
                     </Link>
                 </div>
 

@@ -46,19 +46,11 @@ const Login = () => {
 
   const handleGoogleAuth = (e) => {
     e.preventDefault()
-    // const res = window.open(
-    //   `http://localhost:8080/auth/google`,
-    //   "_self"
-    // )
-    axios.post('/auth/google/')
-    .then(response => {
-        // const token = response.headers;
-        //     setData({
-        //         ...data, token: token, isAuthenticated: true, user: response.data
-        //     })
-        console.log(response)
-    })
-    // console.log(res)
+    const res = window.open(
+      `http://localhost:8080/auth/google`,
+      "_self"
+    )
+    console.log(res)
   }
 
   return (

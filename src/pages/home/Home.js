@@ -36,7 +36,7 @@ const Home = () => {
       <Banner />
       <Card />
       <Feature />
-      <LastViewed />
+      {/* <LastViewed /> */}
     </Layout>
   )
 }

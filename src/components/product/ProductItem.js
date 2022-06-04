@@ -10,7 +10,7 @@ const ProductItem = ({ items }) => {
     // const router = useRouter()
 
     return (
-        <div className="m-2 card card-body">
+        <div className="m-2">
             <div className="relative w-[250px] mb-2" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
                 <div className="border-b-2 border-b-black flex w-[250px]" >
                     {
@@ -40,9 +40,9 @@ const ProductItem = ({ items }) => {
                 {
                     hover &&
                     <div className="h-[377px] w-[250px] z-10 absolute bg-[#fffffe] top-0 bg-opacity-75 text-white flex justify-center items-center border-b-2 border-b-sky-600">
-                        <button className="btn btn-outline-dark p-2 rounded-none me-1 cursor-pointer">
+                        {/* <button className="btn btn-outline-dark p-2 rounded-none me-1 cursor-pointer">
                             <BsFillCartPlusFill />
-                        </button>
+                        </button> */}
                         <Link to={`/products/${items._id}`} state={{ item: items }} >
                             <button className="btn btn-dark rounded-none uppercase text-xs tracking-widest py-2 px-2 flex cursor-pointer ">
                                 <div className="flex items-center justify-center flex-grow">
@@ -50,9 +50,9 @@ const ProductItem = ({ items }) => {
                                 </div>
                             </button>
                         </Link>
-                        <button className="btn btn-outline-dark p-2 rounded-none ms-1 cursor-pointer">
+                        {/* <button className="btn btn-outline-dark p-2 rounded-none ms-1 cursor-pointer">
                             <BsViewList />
-                        </button>
+                        </button> */}
                     </div>
                 }
             </div>

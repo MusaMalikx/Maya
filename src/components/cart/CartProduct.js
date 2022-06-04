@@ -1,22 +1,38 @@
+import axios from "axios"
+import { useState } from "react"
 import styles from "../../pages/cart/Cart.module.css"
 // import img from "next/img"
 // import { useRouter } from "next/router"
 
-const CartProduct = ({ cart }) => {
+const CartProduct = ({ cart, cart_id }) => {
 
     // const router = useRouter()
-    console.log(cart)
+    // console.log(cart.id, cart_id)
+    const [hide, setHidden] = useState(false)
 
-    const handleCartRemove = (e) => {
+    const handleCartRemove = async (e) => {
         e.preventDefault()
-        console.log('Removed Cart')
+
+        axios.delete(`/cart/${cart_id}`, {
+            data: {
+                productID: cart.id
+            }
+        })
+            .then((res) => {
+                console.log(res)
+                setHidden(true)
+                alert('Cart Removed!')
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
 
     return (
         <div>
             <div className="px-3">
                 <div className="py-2">
-                    <div className="d-flex align-items-center text-start text-md-center row">
+                    <div className={`${hide ? 'hidden' : 'd-flex'} align-items-center text-start text-md-center row`}>
                         <div className="col-md-5 d-flex flex-row justify-content-between align-items-center">
                             <div className="d-flex align-items-center justify-content-center">
                                 <p>

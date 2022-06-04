@@ -96,9 +96,9 @@ const ProductInfo = () => {
                                 <div className="col text-center mt-2">
                                     <form>
                                         <div className="formInput">
-                                            <label htmlFor="file">
+                                            {/* <label htmlFor="file">
                                                 Product Image: <DriveFolderUploadOutlinedIcon style={{ cursor: "pointer" }} />
-                                            </label>
+                                            </label> */}
                                             {/* <input
                                                 type="file"
                                                 id="file"
@@ -144,7 +144,7 @@ const ProductInfo = () => {
                             </div>
 
 
-                            <div className="col-12 col-lg-6  py-2">
+                            {/* <div className="col-12 col-lg-6  py-2">
                                 <label htmlFor="sizes" className="form-label tracking-widest">Available Sizes: </label>
                                 <div className={`ml-2 pt-2 border-b border-grey-500`}>
                                     <div className="form-check form-check-inline">
@@ -164,7 +164,7 @@ const ProductInfo = () => {
                                         <label className="form-check-label" htmlFor="inlineCheckbox3">Large</label>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                             {/*<div className="col-12 col-md-6">*/}
                             {/*    <label htmlFor="avatar" className="text-sm tracking-widest btn">Add Product Picture</label>*/}
                             {/*    <input id="avatar" className="form-control p-2 rounded-none" name="avatar"*/}

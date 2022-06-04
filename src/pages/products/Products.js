@@ -19,18 +19,32 @@ const Products = () => {
 
     const [auth, setAuth] = useState(JSON.parse(localStorage.getItem('auth')))
     const [List, setList] = useState(null)
+    const [pages, setPages] = useState([])
+    const [val, setVal] = useState("1")
 
     useEffect(() => {
         const getProducts = async () => {
-            await axios.get('/products/')
+            await axios.get(`/products?p=${val}`)
                 .then((res) => {
-                    // console.log(res.data)
-                    setList(res.data)
+                    console.log(res.data)
+                    setList(res.data.products)
+                    setPages(res.data.pages)
                 })
                 .catch((err) => console.log(err.message))
         }
         getProducts();
-    }, [])
+    }, [val])
+
+    const handleClick = (e) => {
+        setVal(e.target.value)
+        const products = async () => {
+            await axios.get(`/products?p=${val}`).then(function (res) {
+                setList(res.data.products)
+                setPages(res.data.pages)
+            })
+        }
+        products()
+    }
 
     return (
         <Layout title="Products">
@@ -38,7 +52,7 @@ const Products = () => {
                 <h1 className="uppercase tracking-[0.8rem] py-20 text-center text-4xl lg:text-6xl whitespace-nowrap">
                     Products
                 </h1>
-                <SearchBar />
+                <SearchBar setList={setList} />
                 {
                     List &&
                     <div className="py-20 space-y-20">
@@ -47,60 +61,28 @@ const Products = () => {
                                 <ProductItem key={i} items={item} />
                             ))}
                         </div>
-                        <div
-                            className="btn-toolbar hidden lg:flex items-center justify-center mt-10"
-                            role="toolbar"
-                            aria-label="Toolbar with button groups"
-                        >
-                            <div className="btn-group me-2" role="group" aria-label="First group">
-                                <button
-                                    type="button"
-                                    className="btn bg-[#f0f0f0] border-[1px] rounded-none border-gray-300"
-                                >
-                                    <RiSkipBackMiniFill className="text-2xl" />
-                                </button>
-                                <button
-                                    type="button"
-                                    className="btn bg-[#f0f0f0] border-[1px] rounded-none border-gray-300"
-                                >
+                        <div className="text-center my-5">
+                            <div
+                                className="btn-toolbar hidden lg:flex items-center justify-center mt-10"
+                                role="toolbar"
+                                aria-label="Toolbar with button groups"
+                            >
+                                <div className="btn-group me-2 flex items-center" role="group" aria-label="First group">
                                     <MdArrowLeft className="text-2xl" />
-                                </button>
-                                <button
-                                    type="button"
-                                    className="btn bg-[#139ff0] text-white border-[1px] rounded-none border-gray-300"
-                                >
-                                    1
-                                </button>
-                                <button
-                                    type="button"
-                                    className="btn bg-[#f0f0f0] border-[1px] rounded-none border-gray-300"
-                                >
-                                    2
-                                </button>
-                                <button
-                                    type="button"
-                                    className="btn bg-[#f0f0f0] border-[1px] rounded-none border-gray-300"
-                                >
-                                    3
-                                </button>
-                                <button
-                                    type="button"
-                                    className="btn bg-[#f0f0f0] border-[1px] rounded-none border-gray-300"
-                                >
-                                    4
-                                </button>
-                                <button
-                                    type="button"
-                                    className="btn bg-[#f0f0f0] border-[1px] rounded-none border-gray-300"
-                                >
+                                    {
+                                        [...Array(pages)].map((page, i) => (
+                                            <button
+                                                type="button"
+                                                value={i + 1}
+                                                className="btn bg-[#f0f0f0] border-[1px] rounded-none border-gray-300"
+                                                onClick={handleClick}
+                                            >
+                                                {i + 1}
+                                            </button>
+                                        ))
+                                    }
                                     <MdArrowRight className="text-2xl" />
-                                </button>
-                                <button
-                                    type="button"
-                                    className="btn bg-[#f0f0f0] border-[1px] rounded-none border-gray-300"
-                                >
-                                    <RiSkipForwardMiniFill className="text-2xl" />
-                                </button>
+                                </div>
                             </div>
                         </div>
                     </div>

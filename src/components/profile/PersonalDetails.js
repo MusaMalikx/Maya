@@ -7,112 +7,29 @@ import React, { useEffect, useState } from "react";
 function PersonalDetails() {
 
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
   const [street, setStreet] = useState("");
   const [company, setCompany] = useState("");
   const [state, setState] = useState("");
   const [country, setCountry] = useState("");
   const [telephone, setTelephone] = useState("");
   const [auth, setAuth] = useState(JSON.parse(localStorage.getItem('auth')))
-  // const [user, setUser] = useState(null);
 
-  // const user = useSelector(selectUser)
-  // console.log(user)
-
-  // useEffect(() => {
-
-  //   // const user_data = async () => {
-  //   //   await axios.get(`/user/${user._id}`)
-  //   //     .then((res) => {
-  //   //       console.log(res)
-  //   //     })
-  //   //     .catch((err) => {
-  //   //       console.log(err)
-  //   //     })
-  //   // }
-
-  //   const checkUser = async () => {
-  //     await axios.get('/user/check/authentication').then(async (res) => {
-  //       console.log(res)
-  //       setUser(res.data.user)
-
-  //       // await axios.get(`/user/${res.data.user._id}`)
-  //       // .then((res) => {
-  //       //   console.log(res)
-  //       // })
-  //       // .catch((err) => {
-  //       //   console.log(err)
-  //       // })
-  //       // if (res.data.bool === true) {
-  //       //     navigate("/")
-  //       // }
-  //       // else {
-  //       //     navigate("/login")
-  //       // }
-  //     }).catch(function (err) {
-  //       console.log(err)
-  //     })
-  //   }
-  //   checkUser();
-
-  //   // user_data();
-
-  //   // return (() => {
-  //   //   setName(user.name);
-  //   //   setEmail(user.email)
-  //   //   setStreet(user.street)
-  //   //   setCompany(user.company)
-  //   //   setState(user.state)
-  //   //   setCountry(user.country)
-  //   //   setTelephone(user.telephone)
-  //   // })
-
-  // }, [])
-
-  // useEffect(() => {
-  //   const user_data = async () => {
-  //     await axios.get(`/user/${user._id}`)
-  //       .then((res) => {
-  //         console.log(res)
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-  //   }
-  //   user && user_data();
-  
-  // }, [user])
-
-  // setName(user.name);
-  //   setEmail(user.email)
-  //   setStreet(user.street)
-  //   setCompany(user.company)
-  //   setState(user.state)
-  //   setCountry(user.country)
-  //   setTelephone(user.telephone)
-
-
-  // setName(user.name);
-  // setEmail(user.email)
-  // setStreet(user.street)
-  // setCompany(user.company)
-  // setState(user.state)
-  // setCountry(user.country)
-  // setTelephone(user.telephone)
-
-  // user._id, user.company, user.state, user.email, user.street, user.name, user.country, user.telephone
   const handleSubmit = async (e) => {
     e.preventDefault()
     // console.log(name, email, street, company, state, country, telephone)
 
     await axios.put(`/user/savechanges/${auth.user._id}`, {
       name: name,
-      email: email,
       street: street,
       company: company,
       state: state,
       country: country,
       telephone: telephone
+    }, {
+      headers: {
+        token: 'Bearer ' + auth.token
+      }
     })
       .then((res) => {
         console.log(res)
@@ -150,12 +67,12 @@ function PersonalDetails() {
                 </label>
                 <input type='text' className='form-control' id='pw2' />
               </div> */}
-          <div className='col-12 col-md-6 mb-3'>
+          {/* <div className='col-12 col-md-6 mb-3'>
             <label htmlFor='text' className='form-label'>
               EMAIL
             </label>
             <input type='email' className='form-control' id='pw9' value={email} onChange={(e) => setEmail(e.target.value)} />
-          </div>
+          </div> */}
           <div className='col-12 col-md-6 mb-3'>
             <label htmlFor='oldpassword' className='form-label'>
               STREET
