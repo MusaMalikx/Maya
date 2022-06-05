@@ -31,6 +31,10 @@ const ProductSchema = new Schema(
       type: String,
       default: '0'
     },
+    ratingCount:{
+      type:String,
+      default:'0'
+    },
     image: {
       type: String,
       // required: true

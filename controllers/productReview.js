@@ -1,3 +1,4 @@
+const Product = require("../models/Product");
 const ProductReview = require("../models/ProductReview");
 const Review = require("../models/ProductReview");
 const pageChecker = require("../utils/pageChecker");
@@ -5,6 +6,11 @@ const pageChecker = require("../utils/pageChecker");
 const addReview = async (req, res, next) => {
   const newReview = new Review(req.body);
   try {
+    const product= await Product.findById(req.body.PID)
+    const rating=parseFloat(req.body.rating)+(parseFloat(product.rating)*parseFloat(product.ratingCount))
+    const frat=rating/(parseFloat(product.ratingCount)+1)
+    const totalReviews=parseInt(product.ratingCount)+1
+    await Product.findByIdAndUpdate(req.body.PID,{"rating":frat,"ratingCount":totalReviews})
     const savedReview = await newReview.save();
     res.status(200).json(savedReview);
   } catch (err) {
