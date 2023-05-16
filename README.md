@@ -7,12 +7,20 @@ This is the backend of Maya, the E-commerce clothing platform based on Mern Stac
 
 ### Step 1
 ```
-<pre>npm install</pre>
+npm install
 ```
 
 ### Step 2
-<pre>npm install -g nodemon</pre>
+```
+npm install -g nodemon
+```
 
 ### Step 3
 Before running this command make sure that your mongodb is installed locally and working fine.
-<pre>npm start</pre>
+```
+npm start
+```
+
+### Step 4
+Then you'll see the message of and server running on port and mongodb connected in terminal.<br />
+Congratualations the Backend is running successfully.
