@@ -15,4 +15,4 @@ Before this command, do make sure that you have cloned the backend from backend 
 ```
 npm start
 ```
-Happy Shopping
+Happy Shopping ❤️
