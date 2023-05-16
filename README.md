@@ -22,5 +22,5 @@ npm start
 ```
 
 ### Step 4
-Then you'll see the message of and server running on port and mongodb connected in terminal.<br />
+Then you'll see the message of server running on port and mongodb connected in terminal.<br />
 Congratualations the Backend is running successfully.
