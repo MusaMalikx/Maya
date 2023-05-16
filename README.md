@@ -6,7 +6,9 @@ This is the backend of Maya, the E-commerce clothing platform based on Mern Stac
 ## Steps for running the backend
 
 ### Step 1
+```
 <pre>npm install</pre>
+```
 
 ### Step 2
 <pre>npm install -g nodemon</pre>
