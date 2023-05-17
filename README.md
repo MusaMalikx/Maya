@@ -16,11 +16,26 @@ npm install -g nodemon
 ```
 
 ### Step 3
+Add the .env file in Backend project structure
+```
+JWT_SEC = ""
+PORT = "8080"
+CLIENT_URL = "http://localhost:3000/"
+GOOGLE_CLIENT_ID = ""
+GOOGLE_CLIENT_SECRET = ""
+FB_CLIENT_ID = ""
+FB_CLIENT_SECRET = ""
+JWT_RESET_KEY = ""
+GOOGLE_APP_GMAIL = ""
+GOOGLE_APP_PASS = ""
+```
+
+### Step 4
 Before running this command make sure that your mongodb is installed locally and working fine.
 ```
 npm start
 ```
 
-### Step 4
+### Step 5
 Then you'll see the message of server running on port and mongodb connected in terminal.<br />
 Congratualations the Backend is running successfully.
